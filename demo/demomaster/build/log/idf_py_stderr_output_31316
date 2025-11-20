@@ -1,0 +1,6 @@
+Command: ninja storage
+CMake Error at CMakeLists.txt:12 (spiffs_create_partition_image):
+  Unknown CMake command "spiffs_create_partition_image".
+
+
+ninja: error: rebuilding 'build.ninja': subcommand failed
