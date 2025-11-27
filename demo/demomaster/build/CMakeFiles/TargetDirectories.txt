@@ -17,6 +17,10 @@ C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/CMakeFi
 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/CMakeFiles/uf2.dir
 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/CMakeFiles/uf2-app.dir
 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/CMakeFiles/__ldgen_output_sections.ld.dir
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/CMakeFiles/sync_spiffs_payload.dir
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/CMakeFiles/spiffs_storage_bin.dir
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/CMakeFiles/storage-flash.dir
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/CMakeFiles/encrypted-storage-flash.dir
 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/CMakeFiles/edit_cache.dir
 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/CMakeFiles/rebuild_cache.dir
 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/CMakeFiles/list_install_components.dir
@@ -158,6 +162,13 @@ C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf
 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/esp_bootloader_format/CMakeFiles/install/local.dir
 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/esp_bootloader_format/CMakeFiles/install/strip.dir
 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/app_update/CMakeFiles/__idf_app_update.dir
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/app_update/CMakeFiles/blank_ota_data.dir
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/app_update/CMakeFiles/read-otadata.dir
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/app_update/CMakeFiles/read_otadata.dir
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/app_update/CMakeFiles/erase-otadata.dir
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/app_update/CMakeFiles/erase_otadata.dir
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/app_update/CMakeFiles/otadata-flash.dir
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/app_update/CMakeFiles/encrypted-otadata-flash.dir
 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/app_update/CMakeFiles/edit_cache.dir
 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/app_update/CMakeFiles/rebuild_cache.dir
 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/app_update/CMakeFiles/list_install_components.dir

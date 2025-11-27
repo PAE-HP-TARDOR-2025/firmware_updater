@@ -1,3 +1,4 @@
+#include <inttypes.h>
 #include <stdio.h>
 
 #include "freertos/FreeRTOS.h"
@@ -5,6 +6,7 @@
 #include "esp_err.h"
 #include "esp_log.h"
 #include "esp_timer.h"
+#include "driver/twai.h"
 #include "nvs_flash.h"
 #include "sdkconfig.h"
 
@@ -41,6 +43,27 @@ static canopen_master_t g_canopen = {0};
 static bool canopen_master_init(void);
 static void canopen_process_task(void* arg);
 static void canopen_rx_task(void* arg);
+static void log_twai_status(const char* tag);
+
+static void log_twai_status(const char* tag) {
+    twai_status_info_t info = {0};
+    if (twai_get_status_info(&info) == ESP_OK) {
+        ESP_LOGI(tag,
+                 "TWAI state=%u tx_err=%u rx_err=%u tx_q=%u rx_q=%u",
+                 info.state,
+                 info.tx_error_counter,
+                 info.rx_error_counter,
+                 info.msgs_to_tx,
+                 info.msgs_to_rx);
+    } else {
+        ESP_LOGE(tag, "Failed to query TWAI status");
+    }
+}
+
+static TickType_t wait_ticks(uint32_t ms) {
+    TickType_t ticks = pdMS_TO_TICKS(ms);
+    return (ticks > 0) ? ticks : 1;
+}
 
 static void init_nvs(void) {
     esp_err_t err = nvs_flash_init();
@@ -104,7 +127,7 @@ static void canopen_process_task(void* arg) {
             CO_UNLOCK_OD(ctx->co->CANmodule);
 #endif
         }
-        vTaskDelay(pdMS_TO_TICKS(1));
+        vTaskDelay(wait_ticks(1));
     }
 }
 
@@ -114,7 +137,7 @@ static void canopen_rx_task(void* arg) {
         if (ctx->co != NULL && ctx->co->CANmodule != NULL && ctx->co->CANmodule->CANnormal) {
             CO_CANinterrupt(ctx->co->CANmodule);
         } else {
-            vTaskDelay(pdMS_TO_TICKS(10));
+            vTaskDelay(wait_ticks(10));
         }
     }
 }
@@ -160,6 +183,7 @@ static bool canopen_master_init(void) {
 #endif
 
     CO_CANsetNormalMode(g_canopen.co->CANmodule);
+    log_twai_status(CANOPEN_TAG);
 
     g_canopen.sdoClient = g_canopen.co->SDOclient;
     if (g_canopen.sdoClient == NULL) {
@@ -208,6 +232,10 @@ void app_main(void) {
     init_spiffs();
 #endif
 
+    /* Give the developer a short window to attach the monitor after flashing. */
+    ESP_LOGI(LOG_TAG, "Waiting 5 seconds before starting the upload demo...");
+    vTaskDelay(pdMS_TO_TICKS(5000));
+    ESP_LOGI(LOG_TAG, "Starting master firmware upload demo...");
     if (!canopen_master_init()) {
         ESP_LOGE(LOG_TAG, "CANopen master init failed; aborting demo");
         return;

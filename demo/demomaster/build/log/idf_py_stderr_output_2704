@@ -1,0 +1,13 @@
+Command: ninja all
+WARNING: Function-style preprocessor definitions may not be passed on the compiler command line because many compilers do not support it.
+CMake is dropping a preprocessor definition: (
+Consider defining the macro in a (configured) header file.
+
+WARNING: Function-style preprocessor definitions may not be passed on the compiler command line because many compilers do not support it.
+CMake is dropping a preprocessor definition: (
+Consider defining the macro in a (configured) header file.
+
+WARNING: Function-style preprocessor definitions may not be passed on the compiler command line because many compilers do not support it.
+CMake is dropping a preprocessor definition: (
+Consider defining the macro in a (configured) header file.
+

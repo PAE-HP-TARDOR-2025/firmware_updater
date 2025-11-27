@@ -41,6 +41,15 @@
 static const char* TAG = "CO_DRIVER";
 static bool driver_is_installed = false;
 
+#ifndef CO_CANRXMSG_T_DEFINED
+typedef struct {
+    uint32_t ident;
+    uint8_t DLC;
+    uint8_t data[8];
+} CO_CANrxMsg_t;
+#define CO_CANRXMSG_T_DEFINED 1
+#endif
+
 void
 CO_CANsetConfigurationMode(void* CANptr) {
     /* Put CAN module in configuration mode */
@@ -356,8 +365,12 @@ void CO_CANinterrupt(CO_CANmodule_t* CANmodule) {
     }
 
     twai_message_t msg;
+    TickType_t waitTicks = pdMS_TO_TICKS(5);
+    if (waitTicks == 0) {
+        waitTicks = 1;
+    }
     // Block briefly waiting for at least one frame, then drain the rest without waiting.
-    if (twai_receive(&msg, pdMS_TO_TICKS(5)) != ESP_OK) {
+    if (twai_receive(&msg, waitTicks) != ESP_OK) {
         return;
     }
 

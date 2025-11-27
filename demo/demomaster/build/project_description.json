@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "demomaster",
-    "project_version":    "9d11500",
+    "project_version":    "8341509-dirty",
     "project_path":       "C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster",
     "idf_path":           "C:/Users/guill/esp/v5.5.1/esp-idf",
     "build_dir":          "C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build",
@@ -726,7 +726,7 @@
             "type": "LIBRARY",
             "lib": "__idf_main",
             "reqs": [],
-            "priv_reqs": [ "spi_flash", "nvs_flash", "spiffs", "driver", "canopennode" ],
+            "priv_reqs": [ "spi_flash", "nvs_flash", "spiffs", "esp_timer", "driver", "canopennode" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/esp-idf/main/libmain.a",
@@ -2203,7 +2203,7 @@
             "dir": "C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/main",
             "lib": "__idf_main",
             "reqs": [],
-            "priv_reqs": [ "spi_flash", "nvs_flash", "spiffs", "driver", "canopennode" ],
+            "priv_reqs": [ "spi_flash", "nvs_flash", "spiffs", "esp_timer", "driver", "canopennode" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "include_dirs": [ "." ]

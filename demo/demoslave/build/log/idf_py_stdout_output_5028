@@ -1,0 +1,897 @@
+Command: ninja all
+[0/1] Re-running CMake...
+-- Minimal build - ON
+-- ccache will be used for faster recompilation
+-- Building ESP-IDF components for target esp32
+-- Project sdkconfig file C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/sdkconfig
+-- Compiler supported targets: xtensa-esp-elf
+-- USING O3
+-- App "demoslave" version: 8341509-dirty
+-- Adding linker script C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/build/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.newlib-data.ld
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.syscalls.ld
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.libc-funcs.ld
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.newlib-reent-funcs.ld
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/soc/esp32/ld/esp32.peripherals.ld
+-- Components: app_update bootloader bootloader_support canopennode cxx driver efuse esp_app_format esp_bootloader_format esp_common esp_driver_ana_cmpr esp_driver_bitscrambler esp_driver_dac esp_driver_gpio esp_driver_gptimer esp_driver_i2c esp_driver_i2s esp_driver_ledc esp_driver_mcpwm esp_driver_parlio esp_driver_pcnt esp_driver_rmt esp_driver_sdio esp_driver_sdm esp_driver_sdmmc esp_driver_sdspi esp_driver_spi esp_driver_tsens esp_driver_twai esp_driver_uart esp_driver_usb_serial_jtag esp_hw_support esp_mm esp_partition esp_pm esp_ringbuf esp_rom esp_security esp_system esp_timer esptool_py freertos hal heap log main mbedtls newlib nvs_flash partition_table pthread sdmmc soc spi_flash xtensa
+-- Component paths: C:/Users/guill/esp/v5.5.1/esp-idf/components/app_update C:/Users/guill/esp/v5.5.1/esp-idf/components/bootloader C:/Users/guill/esp/v5.5.1/esp-idf/components/bootloader_support C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode C:/Users/guill/esp/v5.5.1/esp-idf/components/cxx C:/Users/guill/esp/v5.5.1/esp-idf/components/driver C:/Users/guill/esp/v5.5.1/esp-idf/components/efuse C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_app_format C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_bootloader_format C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_common C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_ana_cmpr C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_bitscrambler C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_dac C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_gpio C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_gptimer C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_i2c C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_i2s C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_ledc C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_mcpwm C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_parlio C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_pcnt C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_rmt C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_sdio C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_sdm C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_sdmmc C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_sdspi C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_spi C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_tsens C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_twai C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_uart C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_mm C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_partition C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_pm C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_ringbuf C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_security C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_system C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_timer C:/Users/guill/esp/v5.5.1/esp-idf/components/esptool_py C:/Users/guill/esp/v5.5.1/esp-idf/components/freertos C:/Users/guill/esp/v5.5.1/esp-idf/components/hal C:/Users/guill/esp/v5.5.1/esp-idf/components/heap C:/Users/guill/esp/v5.5.1/esp-idf/components/log C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/main C:/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls C:/Users/guill/esp/v5.5.1/esp-idf/components/newlib C:/Users/guill/esp/v5.5.1/esp-idf/components/nvs_flash C:/Users/guill/esp/v5.5.1/esp-idf/components/partition_table C:/Users/guill/esp/v5.5.1/esp-idf/components/pthread C:/Users/guill/esp/v5.5.1/esp-idf/components/sdmmc C:/Users/guill/esp/v5.5.1/esp-idf/components/soc C:/Users/guill/esp/v5.5.1/esp-idf/components/spi_flash C:/Users/guill/esp/v5.5.1/esp-idf/components/xtensa
+-- Configuring done (11.2s)
+-- Generating done (0.9s)
+-- Build files have been written to: C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/build
+[1/598] Generating C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/build/esp-idf/esp_system/ld/memory.ld linker script...
+[2/598] Generating C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/build/esp-idf/esp_system/ld/sections.ld.in linker script...
+[3/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_platform.cpp.obj
+[4/598] Building C object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_bootloader.c.obj
+[5/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_partition.cpp.obj
+[6/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_partition_lookup.cpp.obj
+[7/598] Building C object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_bootloader_aes.c.obj
+[8/598] Building CXX object esp-idf/cxx/CMakeFiles/__idf_cxx.dir/cxx_exception_stubs.cpp.obj
+[9/598] Building CXX object esp-idf/cxx/CMakeFiles/__idf_cxx.dir/cxx_guards.cpp.obj
+[10/598] Building CXX object esp-idf/cxx/CMakeFiles/__idf_cxx.dir/cxx_init.cpp.obj
+[11/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_handle_locked.cpp.obj
+[12/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_types.cpp.obj
+[13/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_encrypted_partition.cpp.obj
+[14/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_cxx_api.cpp.obj
+[15/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_handle_simple.cpp.obj
+[16/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_partition_manager.cpp.obj
+[17/598] Building C object esp-idf/pthread/CMakeFiles/__idf_pthread.dir/pthread.c.obj
+[18/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_item_hash_list.cpp.obj
+[19/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_pagemanager.cpp.obj
+[20/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_page.cpp.obj
+[21/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_storage.cpp.obj
+[22/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/init.c.obj
+[23/598] Building C object esp-idf/pthread/CMakeFiles/__idf_pthread.dir/pthread_local_storage.c.obj
+[24/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/heap.c.obj
+[25/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/assert.c.obj
+[26/598] Building C object esp-idf/pthread/CMakeFiles/__idf_pthread.dir/pthread_cond_var.c.obj
+[27/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/poll.c.obj
+[28/598] Building C object esp-idf/pthread/CMakeFiles/__idf_pthread.dir/pthread_rwlock.c.obj
+[29/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/abort.c.obj
+[30/598] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_api.cpp.obj
+[31/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/locks.c.obj
+[32/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/pthread.c.obj
+[33/598] Building C object esp-idf/pthread/CMakeFiles/__idf_pthread.dir/pthread_semaphore.c.obj
+[34/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/termios.c.obj
+[35/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/random.c.obj
+[36/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/getentropy.c.obj
+[37/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/realpath.c.obj
+[38/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/sysconf.c.obj
+[39/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/scandir.c.obj
+[40/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/syscalls.c.obj
+[41/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/reent_syscalls.c.obj
+[42/598] Building C object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_bootloader_xts_aes.c.obj
+[43/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/stdatomic.c.obj
+[44/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/reent_init.c.obj
+[45/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/time.c.obj
+[46/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/newlib_init.c.obj
+[47/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/heap_idf.c.obj
+[48/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/flockfile.c.obj
+[49/598] Building C object esp-idf/newlib/CMakeFiles/__idf_newlib.dir/src/port/esp_time_impl.c.obj
+[50/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/port_common.c.obj
+[51/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/queue.c.obj
+[52/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/port_systick.c.obj
+[53/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/timers.c.obj
+[54/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/list.c.obj
+[55/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/app_startup.c.obj
+[56/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/tasks.c.obj
+[57/598] Building ASM object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/portable/xtensa/portasm.S.obj
+[58/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/event_groups.c.obj
+[59/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/stream_buffer.c.obj
+[60/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/portable/xtensa/xtensa_init.c.obj
+[61/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/portable/xtensa/port.c.obj
+[62/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/portable/xtensa/xtensa_overlay_os_hook.c.obj
+[63/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/cpu.c.obj
+[64/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/esp_additions/idf_additions_event_groups.c.obj
+[65/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/esp_additions/freertos_compatibility.c.obj
+[66/598] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/esp_additions/idf_additions.c.obj
+[67/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/esp_cpu_intr.c.obj
+[68/598] Linking C static library esp-idf\nvs_flash\libnvs_flash.a
+[69/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/esp_memory_utils.c.obj
+[70/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/cpu_region_protect.c.obj
+[71/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/hw_random.c.obj
+[72/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/mac_addr.c.obj
+[73/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/revision.c.obj
+[74/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/rtc_module.c.obj
+[75/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/esp_gpio_reserve.c.obj
+[76/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/periph_ctrl.c.obj
+[77/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/regi2c_ctrl.c.obj
+[78/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/intr_alloc.c.obj
+[79/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/esp_clk.c.obj
+[80/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/io_mux.c.obj
+[81/598] Linking C static library esp-idf\cxx\libcxx.a
+[82/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/clk_ctrl_os.c.obj
+[83/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sar_periph_ctrl_common.c.obj
+[84/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/dma/esp_dma_utils.c.obj
+[85/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/dma/gdma_link.c.obj
+[86/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/esp_clk_tree.c.obj
+[87/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp_clk_tree_common.c.obj
+[88/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_console.c.obj
+[89/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_usb.c.obj
+[90/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/clk_utils.c.obj
+[91/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/spi_share_hw_ctrl.c.obj
+[92/598] Linking C static library esp-idf\pthread\libpthread.a
+[93/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_modem.c.obj
+[94/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/adc_share_hw_ctrl.c.obj
+[95/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_event.c.obj
+[96/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/rtc_wdt.c.obj
+[97/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_wake_stub.c.obj
+[98/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_gpio.c.obj
+[99/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_clk.c.obj
+[100/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/mspi_timing_tuning/mspi_timing_tuning.c.obj
+[101/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/spi_bus_lock.c.obj
+[102/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_init.c.obj
+[103/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/esp_clock_output.c.obj
+[104/598] Linking C static library esp-idf\newlib\libnewlib.a
+[105/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_clk_init.c.obj
+[106/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_modes.c.obj
+[107/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/power_supply/brownout.c.obj
+[108/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/chip_info.c.obj
+[109/598] Building C object esp-idf/esp_security/CMakeFiles/__idf_esp_security.dir/src/esp_crypto_lock.c.obj
+[110/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/dport_access_common.c.obj
+[111/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/dport_access.c.obj
+[112/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/cache_sram_mmu.c.obj
+[113/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_time.c.obj
+[114/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/uart_periph.c.obj
+[115/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_sleep.c.obj
+[116/598] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/sar_periph_ctrl.c.obj
+[117/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/gpio_periph.c.obj
+[118/598] Building C object esp-idf/esp_security/CMakeFiles/__idf_esp_security.dir/src/init.c.obj
+[119/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/adc_periph.c.obj
+[120/598] Linking C static library esp-idf\freertos\libfreertos.a
+[121/598] Building C object esp-idf/esp_security/CMakeFiles/__idf_esp_security.dir/src/esp_crypto_periph_clk.c.obj
+[122/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/spi_periph.c.obj
+[123/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/ledc_periph.c.obj
+[124/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/timer_periph.c.obj
+[125/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/i2s_periph.c.obj
+[126/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/i2c_periph.c.obj
+[127/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/pcnt_periph.c.obj
+[128/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/mcpwm_periph.c.obj
+[129/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/sdm_periph.c.obj
+[130/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/emac_periph.c.obj
+[131/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/rmt_periph.c.obj
+[132/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/mpi_periph.c.obj
+[133/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/lcd_periph.c.obj
+[134/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/sdmmc_periph.c.obj
+[135/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/rtc_io_periph.c.obj
+[136/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/twai_periph.c.obj
+[137/598] Linking C static library esp-idf\esp_hw_support\libesp_hw_support.a
+[138/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/dac_periph.c.obj
+[139/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/wdt_periph.c.obj
+[140/598] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/sdio_slave_periph.c.obj
+[141/598] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/port/memory_layout_utils.c.obj
+[142/598] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/heap_caps_base.c.obj
+[143/598] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/tlsf/tlsf.c.obj
+[144/598] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/multi_heap.c.obj
+[145/598] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/heap_caps_init.c.obj
+[146/598] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/port/esp32/memory_layout.c.obj
+[147/598] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/heap_caps.c.obj
+[148/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/buffer/log_buffers.c.obj
+[149/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/util.c.obj
+[150/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/os/log_timestamp.c.obj
+[151/598] Linking C static library esp-idf\esp_security\libesp_security.a
+[152/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/os/util.c.obj
+[153/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/os/log_lock.c.obj
+[154/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_print.c.obj
+[155/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_level/tag_log_level/tag_log_level.c.obj
+[156/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log.c.obj
+[157/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_format_text.c.obj
+[158/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/os/log_write.c.obj
+[159/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/hal_utils.c.obj
+[160/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_level/tag_log_level/linked_list/log_linked_list.c.obj
+[161/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_level/log_level.c.obj
+[162/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_level/tag_log_level/cache/log_binary_heap.c.obj
+[163/598] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_timestamp_common.c.obj
+[164/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/mpu_hal.c.obj
+[165/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32/efuse_hal.c.obj
+[166/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/efuse_hal.c.obj
+[167/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/wdt_hal_iram.c.obj
+[168/598] Linking C static library esp-idf\soc\libsoc.a
+[169/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/color_hal.c.obj
+[170/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32/cache_hal_esp32.c.obj
+[171/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/mmu_hal.c.obj
+[172/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/spi_flash_encrypt_hal_iram.c.obj
+[173/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/uart_hal.c.obj
+[174/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/spi_flash_hal_iram.c.obj
+[175/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/spi_flash_hal.c.obj
+[176/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32/clk_tree_hal.c.obj
+[177/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/uart_hal_iram.c.obj
+[178/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/gpio_hal.c.obj
+[179/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/timer_hal.c.obj
+[180/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/i2c_hal.c.obj
+[181/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/ledc_hal.c.obj
+[182/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/rtc_io_hal.c.obj
+[183/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/i2c_hal_iram.c.obj
+[184/598] Linking C static library esp-idf\heap\libheap.a
+[185/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/rmt_hal.c.obj
+[186/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/ledc_hal_iram.c.obj
+[187/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/pcnt_hal.c.obj
+[188/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/mcpwm_hal.c.obj
+[189/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/sdm_hal.c.obj
+[190/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/i2s_hal.c.obj
+[191/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/sdmmc_hal.c.obj
+[192/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/adc_hal_common.c.obj
+[193/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/adc_hal.c.obj
+[194/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/aes_hal.c.obj
+[195/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/mpi_hal.c.obj
+[196/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/sha_hal.c.obj
+[197/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/brownout_hal.c.obj
+[198/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/adc_oneshot_hal.c.obj
+[199/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/spi_hal.c.obj
+[200/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/spi_slave_hal_iram.c.obj
+[201/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/spi_slave_hal.c.obj
+[202/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/spi_hal_iram.c.obj
+[203/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/touch_sens_hal.c.obj
+[204/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32/touch_sensor_hal.c.obj
+[205/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/touch_sensor_hal.c.obj
+[206/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/sdio_slave_hal.c.obj
+[207/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/twai_hal_sja1000.c.obj
+[208/598] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32/gpio_hal_workaround.c.obj
+[209/598] Linking C static library esp-idf\log\liblog.a
+[210/598] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_sys.c.obj
+[211/598] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_print.c.obj
+[212/598] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_uart.c.obj
+[213/598] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_efuse.c.obj
+[214/598] Building ASM object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_longjmp.S.obj
+[215/598] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_spiflash.c.obj
+[216/598] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_gpio.c.obj
+[217/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_system_console.c.obj
+[218/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_err.c.obj
+[219/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/crosscore_int.c.obj
+[220/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_ipc.c.obj
+[221/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/freertos_hooks.c.obj
+[222/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/int_wdt.c.obj
+[223/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/startup.c.obj
+[224/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_system.c.obj
+[225/598] Linking C static library esp-idf\hal\libhal.a
+[226/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/stack_check.c.obj
+[227/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/startup_funcs.c.obj
+[228/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/panic.c.obj
+[229/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/system_time.c.obj
+[230/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/ubsan.c.obj
+[231/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/task_wdt/task_wdt.c.obj
+[232/598] Building C object esp-idf/esp_common/CMakeFiles/__idf_esp_common.dir/src/esp_err_to_name.c.obj
+[233/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/xt_wdt.c.obj
+[234/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/panic_handler.c.obj
+[235/598] Linking C static library esp-idf\esp_rom\libesp_rom.a
+[236/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/esp_system_chip.c.obj
+[237/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/task_wdt/task_wdt_impl_timergroup.c.obj
+[238/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/esp_ipc_isr_port.c.obj
+[239/598] Building ASM object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/esp_ipc_isr_routines.S.obj
+[240/598] Building ASM object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/esp_ipc_isr_handler.S.obj
+[241/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/esp_ipc_isr.c.obj
+[242/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/cpu_start.c.obj
+[243/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/image_process.c.obj
+[244/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/panic_arch.c.obj
+[245/598] Building ASM object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/panic_handler_asm.S.obj
+[246/598] Building ASM object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/soc/esp32/highint_hdl.S.obj
+[247/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/trax.c.obj
+[248/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/debug_stubs.c.obj
+[249/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/expression_with_stack.c.obj
+[250/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/flash_brownout_hook.c.obj
+[251/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/soc/esp32/reset_reason.c.obj
+[252/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/debug_helpers.c.obj
+[253/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/soc/esp32/cache_err_int.c.obj
+[254/598] Linking C static library esp-idf\esp_common\libesp_common.a
+[255/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/soc/esp32/system_internal.c.obj
+[256/598] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/soc/esp32/clk.c.obj
+[257/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_issi.c.obj
+[258/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_drivers.c.obj
+[259/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_mxic.c.obj
+[260/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_boya.c.obj
+[261/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_generic.c.obj
+[262/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_gd.c.obj
+[263/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_winbond.c.obj
+[264/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_th.c.obj
+[265/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/memspi_host_driver.c.obj
+[266/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_mxic_opi.c.obj
+[267/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/flash_ops.c.obj
+[268/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/cache_utils.c.obj
+[269/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_wrap.c.obj
+[270/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/flash_mmap.c.obj
+[271/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_os_func_noos.c.obj
+[272/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_os_func_app.c.obj
+[273/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/esp_flash_api.c.obj
+[274/598] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/esp_flash_spi_init.c.obj
+[275/598] Building C object esp-idf/esp_mm/CMakeFiles/__idf_esp_mm.dir/esp_mmu_map.c.obj
+[276/598] Linking C static library esp-idf\esp_system\libesp_system.a
+[277/598] Building C object esp-idf/esp_mm/CMakeFiles/__idf_esp_mm.dir/port/esp32/ext_mem_layout.c.obj
+[278/598] Building C object esp-idf/esp_mm/CMakeFiles/__idf_esp_mm.dir/cache_esp32.c.obj
+[279/598] Building C object esp-idf/esp_mm/CMakeFiles/__idf_esp_mm.dir/esp_cache_utils.c.obj
+[280/598] Building C object esp-idf/esp_mm/CMakeFiles/__idf_esp_mm.dir/heap_align_hw.c.obj
+[281/598] Building C object esp-idf/esp_mm/CMakeFiles/__idf_esp_mm.dir/esp_cache_msync.c.obj
+[282/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_clock_init.c.obj
+[283/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_mem.c.obj
+[284/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_efuse.c.obj
+[285/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_encrypt.c.obj
+[286/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random.c.obj
+[287/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common.c.obj
+[288/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common_loader.c.obj
+[289/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random_esp32.c.obj
+[290/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/secure_boot.c.obj
+[291/598] Linking C static library esp-idf\spi_flash\libspi_flash.a
+[292/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/flash_qio_mode.c.obj
+[293/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash.c.obj
+[294/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_partitions.c.obj
+[295/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash_config_esp32.c.obj
+[296/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32/secure_boot_secure_features.c.obj
+[297/598] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_table.c.obj
+[298/598] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_fields.c.obj
+[299/598] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_utility.c.obj
+[300/598] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_fields.c.obj
+[301/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_sha.c.obj
+[302/598] Linking C static library esp-idf\esp_mm\libesp_mm.a
+[303/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_utility.c.obj
+[304/598] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp_image_format.c.obj
+[305/598] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_api.c.obj
+[306/598] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/efuse_controller/keys/without_key_purposes/three_key_blocks/esp_efuse_api_key.c.obj
+[307/598] Building C object esp-idf/esp_partition/CMakeFiles/__idf_esp_partition.dir/partition_target.c.obj
+[308/598] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_startup.c.obj
+[309/598] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_utility.c.obj
+[310/598] Building C object esp-idf/esp_partition/CMakeFiles/__idf_esp_partition.dir/partition.c.obj
+[311/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/mps_reader.c.obj
+[312/598] Building C object esp-idf/app_update/CMakeFiles/__idf_app_update.dir/esp_ota_app_desc.c.obj
+[313/598] Building C object esp-idf/app_update/CMakeFiles/__idf_app_update.dir/esp_ota_ops.c.obj
+[314/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/debug.c.obj
+[315/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/mps_trace.c.obj
+[316/598] Linking C static library esp-idf\bootloader_support\libbootloader_support.a
+[317/598] Building C object esp-idf/esp_bootloader_format/CMakeFiles/__idf_esp_bootloader_format.dir/esp_bootloader_desc.c.obj
+[318/598] Building C object esp-idf/esp_app_format/CMakeFiles/__idf_esp_app_format.dir/esp_app_desc.c.obj
+[319/598] Linking C static library esp-idf\efuse\libefuse.a
+[320/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_keys.c.obj
+[321/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls12_client.c.obj
+[322/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_cookie.c.obj
+[323/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls12_server.c.obj
+[324/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_server.c.obj
+[325/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_debug_helpers_generated.c.obj
+[326/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_ticket.c.obj
+[327/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_cache.c.obj
+[328/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_client.c.obj
+[329/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_msg.c.obj
+[330/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls.c.obj
+[331/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_ciphersuites.c.obj
+[332/598] Linking C static library esp-idf\esp_partition\libesp_partition.a
+[333/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_client.c.obj
+[334/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/esp_platform_time.c.obj
+[335/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_generic.c.obj
+[336/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/mbedtls_debug.c.obj
+[337/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_crt.c.obj
+[338/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509write_crt.c.obj
+[339/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_crl.c.obj
+[340/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_create.c.obj
+[341/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509write.c.obj
+[342/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/pkcs7.c.obj
+[343/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509.c.obj
+[344/598] Linking C static library esp-idf\app_update\libapp_update.a
+[345/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_csr.c.obj
+[346/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/aesni.c.obj
+[347/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509write_csr.c.obj
+[348/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/aes.c.obj
+[349/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/bignum_mod_raw.c.obj
+[350/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/aesce.c.obj
+[351/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/asn1write.c.obj
+[352/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/bignum_mod.c.obj
+[353/598] Linking C static library esp-idf\esp_bootloader_format\libesp_bootloader_format.a
+[354/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/base64.c.obj
+[355/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/bignum_core.c.obj
+[356/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/bignum.c.obj
+[357/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/asn1parse.c.obj
+[358/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/aria.c.obj
+[359/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/camellia.c.obj
+[360/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/block_cipher.c.obj
+[361/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/chachapoly.c.obj
+[362/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ccm.c.obj
+[363/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/des.c.obj
+[364/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/chacha20.c.obj
+[365/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/cipher.c.obj
+[366/598] Linking C static library esp-idf\esp_app_format\libesp_app_format.a
+[367/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/cipher_wrap.c.obj
+[368/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/constant_time.c.obj
+[369/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/cmac.c.obj
+[370/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecdh.c.obj
+[371/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/dhm.c.obj
+[372/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ctr_drbg.c.obj
+[373/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecdsa.c.obj
+[374/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecjpake.c.obj
+[375/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecp_curves_new.c.obj
+[376/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/entropy_poll.c.obj
+[377/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/entropy.c.obj
+[378/598] Linking CXX static library esp-idf\mbedtls\mbedtls\library\libmbedtls.a
+[379/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecp.c.obj
+[380/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/hkdf.c.obj
+[381/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/hmac_drbg.c.obj
+[382/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecp_curves.c.obj
+[383/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/error.c.obj
+[384/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/gcm.c.obj
+[385/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/lmots.c.obj
+[386/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/lms.c.obj
+[387/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/nist_kw.c.obj
+[388/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/padlock.c.obj
+[389/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/md.c.obj
+[390/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/memory_buffer_alloc.c.obj
+[391/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/md5.c.obj
+[392/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pem.c.obj
+[393/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pk_wrap.c.obj
+[394/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pk.c.obj
+[395/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pk_ecc.c.obj
+[396/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/oid.c.obj
+[397/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pkparse.c.obj
+[398/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pkcs12.c.obj
+[399/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/platform.c.obj
+[400/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/platform_util.c.obj
+[401/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pkwrite.c.obj
+[402/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/poly1305.c.obj
+[403/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pkcs5.c.obj
+[404/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_aead.c.obj
+[405/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_cipher.c.obj
+[406/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_client.c.obj
+[407/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_driver_wrappers_no_static.c.obj
+[408/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_hash.c.obj
+[409/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto.c.obj
+[410/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_ecp.c.obj
+[411/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_se.c.obj
+[412/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_pake.c.obj
+[413/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_ffdh.c.obj
+[414/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_storage.c.obj
+[415/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_mac.c.obj
+[416/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_its_file.c.obj
+[417/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_slot_management.c.obj
+[418/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ripemd160.c.obj
+[419/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_rsa.c.obj
+[420/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/rsa_alt_helpers.c.obj
+[421/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_util.c.obj
+[422/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/sha512.c.obj
+[423/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/rsa.c.obj
+[424/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/sha1.c.obj
+[425/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/sha3.c.obj
+[426/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/sha256.c.obj
+[427/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/version_features.c.obj
+[428/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/timing.c.obj
+[429/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/esp_hardware.c.obj
+[430/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/threading.c.obj
+[431/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/version.c.obj
+[432/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/esp_mem.c.obj
+[433/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/aes/esp_aes_xts.c.obj
+[434/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/aes/esp_aes_common.c.obj
+[435/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/esp_timing.c.obj
+[436/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/bignum/bignum_alt.c.obj
+[437/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/sha/esp_sha.c.obj
+[438/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/aes/block/esp_aes.c.obj
+[439/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/sha/parallel_engine/sha.c.obj
+[440/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/sha/parallel_engine/esp_sha1.c.obj
+[441/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/bignum/esp_bignum.c.obj
+[442/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/sha/parallel_engine/esp_sha512.c.obj
+[443/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/aes/esp_aes_gcm.c.obj
+[444/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/md/esp_md.c.obj
+[445/598] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/guill/esp/v5.5.1/esp-idf/components/mbedtls/port/sha/parallel_engine/esp_sha256.c.obj
+[446/598] Linking CXX static library esp-idf\mbedtls\mbedtls\library\libmbedx509.a
+[447/598] Building C object esp-idf/mbedtls/mbedtls/3rdparty/p256-m/CMakeFiles/p256m.dir/p256-m/p256-m.c.obj
+[448/598] Building C object esp-idf/mbedtls/mbedtls/3rdparty/everest/CMakeFiles/everest.dir/library/everest.c.obj
+[449/598] Building C object esp-idf/mbedtls/mbedtls/3rdparty/everest/CMakeFiles/everest.dir/library/x25519.c.obj
+[450/598] Building C object esp-idf/mbedtls/mbedtls/3rdparty/everest/CMakeFiles/everest.dir/library/Hacl_Curve25519_joined.c.obj
+[451/598] Building C object esp-idf/mbedtls/mbedtls/3rdparty/p256-m/CMakeFiles/p256m.dir/p256-m_driver_entrypoints.c.obj
+[452/598] Linking CXX static library esp-idf\mbedtls\mbedtls\library\libmbedcrypto.a
+[453/598] Linking CXX static library esp-idf\mbedtls\mbedtls\3rdparty\p256-m\libp256m.a
+[454/598] Linking CXX static library esp-idf\mbedtls\mbedtls\3rdparty\everest\libeverest.a
+[455/598] Building C object esp-idf/esp_pm/CMakeFiles/__idf_esp_pm.dir/pm_trace.c.obj
+[456/598] Building C object esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir/src/system_time.c.obj
+[457/598] Building C object esp-idf/esp_driver_gpio/CMakeFiles/__idf_esp_driver_gpio.dir/src/gpio_glitch_filter_ops.c.obj
+[458/598] Building C object esp-idf/esp_pm/CMakeFiles/__idf_esp_pm.dir/pm_locks.c.obj
+[459/598] Building C object esp-idf/mbedtls/CMakeFiles/__idf_mbedtls.dir/esp_crt_bundle/esp_crt_bundle.c.obj
+[460/598] Building C object esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir/src/esp_timer.c.obj
+[461/598] Building C object esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir/src/esp_timer_init.c.obj
+[462/598] Building C object esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir/src/ets_timer_legacy.c.obj
+[463/598] Building C object esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir/src/esp_timer_impl_common.c.obj
+[464/598] Building C object esp-idf/esp_driver_gpio/CMakeFiles/__idf_esp_driver_gpio.dir/src/rtc_io.c.obj
+[465/598] Building C object esp-idf/esp_pm/CMakeFiles/__idf_esp_pm.dir/pm_impl.c.obj
+[466/598] Building C object esp-idf/esp_driver_gpio/CMakeFiles/__idf_esp_driver_gpio.dir/src/gpio.c.obj
+[467/598] Building C object esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir/src/esp_timer_impl_lac.c.obj
+[468/598] Building ASM object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/xtensa_intr_asm.S.obj
+[469/598] Building C object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/xt_trax.c.obj
+[470/598] Building ASM object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/xtensa_context.S.obj
+[471/598] Building ASM object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/xtensa_vectors.S.obj
+[472/598] Linking C static library esp-idf\mbedtls\libmbedtls.a
+[473/598] Building C object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/xtensa_intr.c.obj
+[474/598] Linking C static library esp-idf\esp_pm\libesp_pm.a
+[475/598] Building C object esp-idf/esp_driver_spi/CMakeFiles/__idf_esp_driver_spi.dir/src/gpspi/spi_dma.c.obj
+[476/598] Linking C static library esp-idf\esp_timer\libesp_timer.a
+[477/598] Building C object esp-idf/esp_driver_i2s/CMakeFiles/__idf_esp_driver_i2s.dir/i2s_platform.c.obj
+[478/598] Building C object esp-idf/esp_ringbuf/CMakeFiles/__idf_esp_ringbuf.dir/ringbuf.c.obj
+[479/598] Building C object esp-idf/esp_driver_i2s/CMakeFiles/__idf_esp_driver_i2s.dir/i2s_std.c.obj
+[480/598] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_cmd.c.obj
+[481/598] Building C object esp-idf/esp_driver_spi/CMakeFiles/__idf_esp_driver_spi.dir/src/gpspi/spi_common.c.obj
+[482/598] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_init.c.obj
+[483/598] Building C object esp-idf/esp_driver_spi/CMakeFiles/__idf_esp_driver_spi.dir/src/gpspi/spi_slave.c.obj
+[484/598] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_common.c.obj
+[485/598] Building C object esp-idf/esp_driver_i2s/CMakeFiles/__idf_esp_driver_i2s.dir/i2s_pdm.c.obj
+[486/598] Building C object esp-idf/esp_driver_spi/CMakeFiles/__idf_esp_driver_spi.dir/src/gpspi/spi_master.c.obj
+[487/598] Performing build step for 'bootloader'
+[0/1] Re-running CMake...
+-- Minimal build - OFF
+-- Building ESP-IDF components for target esp32
+-- Project sdkconfig file C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/sdkconfig
+-- Compiler supported targets: xtensa-esp-elf
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/soc/esp32/ld/esp32.peripherals.ld
+-- Bootloader project name: "bootloader" version: 1
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.libc-funcs.ld
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/bootloader/subproject/main/ld/esp32/bootloader.ld
+-- Adding linker script C:/Users/guill/esp/v5.5.1/esp-idf/components/bootloader/subproject/main/ld/esp32/bootloader.rom.ld
+-- Components: bootloader bootloader_support efuse esp_app_format esp_bootloader_format esp_common esp_hw_support esp_rom esp_security esp_system esptool_py freertos hal log main micro-ecc newlib partition_table soc spi_flash xtensa
+-- Component paths: C:/Users/guill/esp/v5.5.1/esp-idf/components/bootloader C:/Users/guill/esp/v5.5.1/esp-idf/components/bootloader_support C:/Users/guill/esp/v5.5.1/esp-idf/components/efuse C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_app_format C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_bootloader_format C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_common C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_security C:/Users/guill/esp/v5.5.1/esp-idf/components/esp_system C:/Users/guill/esp/v5.5.1/esp-idf/components/esptool_py C:/Users/guill/esp/v5.5.1/esp-idf/components/freertos C:/Users/guill/esp/v5.5.1/esp-idf/components/hal C:/Users/guill/esp/v5.5.1/esp-idf/components/log C:/Users/guill/esp/v5.5.1/esp-idf/components/bootloader/subproject/main C:/Users/guill/esp/v5.5.1/esp-idf/components/bootloader/subproject/components/micro-ecc C:/Users/guill/esp/v5.5.1/esp-idf/components/newlib C:/Users/guill/esp/v5.5.1/esp-idf/components/partition_table C:/Users/guill/esp/v5.5.1/esp-idf/components/soc C:/Users/guill/esp/v5.5.1/esp-idf/components/spi_flash C:/Users/guill/esp/v5.5.1/esp-idf/components/xtensa
+-- Configuring done (33.3s)
+-- Generating done (0.9s)
+-- Build files have been written to: C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/build/bootloader
+[1/2] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\guill\OneDrive\Documents\firmware_updater\demo\demoslave\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.5_py3.10_env\Scripts\python.exe C:/Users/guill/esp/v5.5.1/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/build/bootloader/bootloader.bin"
+Bootloader binary size 0x6680 bytes. 0x980 bytes (8%) free.
+[488/598] Building C object esp-idf/esp_driver_i2s/CMakeFiles/__idf_esp_driver_i2s.dir/i2s_common.c.obj
+[489/598] Linking C static library esp-idf\esp_driver_gpio\libesp_driver_gpio.a
+[490/598] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_io.c.obj
+[491/598] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sd_pwr_ctrl/sd_pwr_ctrl.c.obj
+[492/598] Linking C static library esp-idf\xtensa\libxtensa.a
+[493/598] Building C object esp-idf/esp_driver_gptimer/CMakeFiles/__idf_esp_driver_gptimer.dir/src/gptimer_common.c.obj
+[494/598] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_mmc.c.obj
+[495/598] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_sd.c.obj
+[496/598] Building C object esp-idf/esp_driver_gptimer/CMakeFiles/__idf_esp_driver_gptimer.dir/src/gptimer.c.obj
+[497/598] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_oper.c.obj
+[498/598] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_cap.c.obj
+[499/598] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_cmpr.c.obj
+[500/598] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_com.c.obj
+[501/598] Linking C static library esp-idf\esp_driver_i2s\libesp_driver_i2s.a
+[502/598] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_fault.c.obj
+[503/598] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_gen.c.obj
+[504/598] Linking C static library esp-idf\esp_ringbuf\libesp_ringbuf.a
+[505/598] Linking C static library esp-idf\esp_driver_spi\libesp_driver_spi.a
+[506/598] Building C object esp-idf/esp_driver_pcnt/CMakeFiles/__idf_esp_driver_pcnt.dir/src/pulse_cnt.c.obj
+[507/598] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_sync.c.obj
+[508/598] Linking C static library esp-idf\sdmmc\libsdmmc.a
+[509/598] Building C object esp-idf/esp_driver_sdspi/CMakeFiles/__idf_esp_driver_sdspi.dir/src/sdspi_crc.c.obj
+[510/598] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_timer.c.obj
+[511/598] Building C object esp-idf/esp_driver_sdspi/CMakeFiles/__idf_esp_driver_sdspi.dir/src/sdspi_host.c.obj
+[512/598] Building C object esp-idf/esp_driver_sdspi/CMakeFiles/__idf_esp_driver_sdspi.dir/src/sdspi_transaction.c.obj
+[513/598] Building C object esp-idf/esp_driver_dac/CMakeFiles/__idf_esp_driver_dac.dir/dac_oneshot.c.obj
+[514/598] Building C object esp-idf/esp_driver_dac/CMakeFiles/__idf_esp_driver_dac.dir/dac_common.c.obj
+[515/598] Building C object esp-idf/esp_driver_dac/CMakeFiles/__idf_esp_driver_dac.dir/dac_continuous.c.obj
+[516/598] Building C object esp-idf/esp_driver_sdmmc/CMakeFiles/__idf_esp_driver_sdmmc.dir/src/sdmmc_transaction.c.obj
+[517/598] Building C object esp-idf/esp_driver_dac/CMakeFiles/__idf_esp_driver_dac.dir/dac_cosine.c.obj
+[518/598] Building C object esp-idf/esp_driver_sdio/CMakeFiles/__idf_esp_driver_sdio.dir/src/sdio_slave.c.obj
+[519/598] Building C object esp-idf/esp_driver_sdmmc/CMakeFiles/__idf_esp_driver_sdmmc.dir/src/sdmmc_host.c.obj
+[520/598] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_common.c.obj
+[521/598] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_encoder.c.obj
+[522/598] Building C object esp-idf/esp_driver_dac/CMakeFiles/__idf_esp_driver_dac.dir/esp32/dac_dma.c.obj
+[523/598] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_encoder_bytes.c.obj
+[524/598] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_encoder_copy.c.obj
+[525/598] Building C object esp-idf/esp_driver_uart/CMakeFiles/__idf_esp_driver_uart.dir/src/uart_wakeup.c.obj
+[526/598] Linking C static library esp-idf\esp_driver_pcnt\libesp_driver_pcnt.a
+[527/598] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_encoder_simple.c.obj
+[528/598] Linking C static library esp-idf\esp_driver_gptimer\libesp_driver_gptimer.a
+[529/598] Linking C static library esp-idf\esp_driver_mcpwm\libesp_driver_mcpwm.a
+[530/598] Linking C static library esp-idf\esp_driver_sdmmc\libesp_driver_sdmmc.a
+[531/598] Building C object esp-idf/esp_driver_sdm/CMakeFiles/__idf_esp_driver_sdm.dir/src/sdm.c.obj
+[532/598] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_rx.c.obj
+[533/598] Linking C static library esp-idf\esp_driver_sdspi\libesp_driver_sdspi.a
+[534/598] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_tx.c.obj
+[535/598] Building C object esp-idf/esp_driver_i2c/CMakeFiles/__idf_esp_driver_i2c.dir/i2c_common.c.obj
+[536/598] Linking C static library esp-idf\esp_driver_sdio\libesp_driver_sdio.a
+[537/598] Linking C static library esp-idf\esp_driver_dac\libesp_driver_dac.a
+[538/598] Linking C static library esp-idf\esp_driver_sdm\libesp_driver_sdm.a
+[539/598] Building C object esp-idf/esp_driver_twai/CMakeFiles/__idf_esp_driver_twai.dir/esp_twai.c.obj
+[540/598] Building C object esp-idf/esp_driver_i2c/CMakeFiles/__idf_esp_driver_i2c.dir/i2c_slave.c.obj
+[541/598] Building C object esp-idf/esp_driver_ledc/CMakeFiles/__idf_esp_driver_ledc.dir/src/ledc.c.obj
+[542/598] Linking C static library esp-idf\esp_driver_rmt\libesp_driver_rmt.a
+[543/598] Building C object esp-idf/esp_driver_uart/CMakeFiles/__idf_esp_driver_uart.dir/src/uart.c.obj
+[544/598] Building C object esp-idf/esp_driver_twai/CMakeFiles/__idf_esp_driver_twai.dir/esp_twai_onchip.c.obj
+[545/598] Building C object esp-idf/esp_driver_i2c/CMakeFiles/__idf_esp_driver_i2c.dir/i2c_master.c.obj
+[546/598] Linking C static library esp-idf\esp_driver_ledc\libesp_driver_ledc.a
+[547/598] Linking C static library esp-idf\esp_driver_uart\libesp_driver_uart.a
+[548/598] Linking C static library esp-idf\esp_driver_twai\libesp_driver_twai.a
+[549/598] Linking C static library esp-idf\esp_driver_i2c\libesp_driver_i2c.a
+[550/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/deprecated/dac_common_legacy.c.obj
+[551/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/deprecated/adc_dma_legacy.c.obj
+[552/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/deprecated/esp32/dac_legacy.c.obj
+[553/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/deprecated/adc_legacy.c.obj
+[554/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/deprecated/timer_legacy.c.obj
+[555/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/deprecated/sigma_delta_legacy.c.obj
+[556/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/deprecated/pcnt_legacy.c.obj
+[557/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/i2c/i2c.c.obj
+[558/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/deprecated/mcpwm_legacy.c.obj
+[559/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/touch_sensor/touch_sensor_common.c.obj
+[560/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/deprecated/rmt_legacy.c.obj
+[561/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/touch_sensor/esp32/touch_sensor.c.obj
+[562/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/twai/twai.c.obj
+[563/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/deprecated/i2s_legacy.c.obj
+[564/598] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/deprecated/adc_i2s_deprecated.c.obj
+[565/598] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/OD.c.obj
+FAILED: esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/OD.c.obj 
+ccache C:\Espressif\tools\xtensa-esp-elf\esp-14.2.0_20241119\xtensa-esp-elf\bin\xtensa-esp32-elf-gcc.exe -DCO_CONFIG_FIFO=CO_CONFIG_FIFO_ENABLE -DCO_CONFIG_SDO_CLI=0x03 -DESP_PLATFORM -DIDF_VER=\"v5.5.1\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/build/config -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/301 -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/303 -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/304 -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/305 -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/309 -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/storage -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/extra -IC:/Users/guill/esp/v5.5.1/esp-idf/components/newlib/platform_include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/config/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/config/include/freertos -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/config/xtensa/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/FreeRTOS-Kernel/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/esp_additions/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/include/soc -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/include/soc/esp32 -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/dma/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/ldo/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/debug_probe/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/mspi_timing_tuning/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/mspi_timing_tuning/tuning_scheme_impl/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/power_supply/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/port/esp32/. -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/port/esp32/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/heap/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/heap/tlsf -IC:/Users/guill/esp/v5.5.1/esp-idf/components/log/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/soc/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/soc/esp32 -IC:/Users/guill/esp/v5.5.1/esp-idf/components/soc/esp32/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/soc/esp32/register -IC:/Users/guill/esp/v5.5.1/esp-idf/components/hal/platform_port/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/hal/esp32/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/hal/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/include/esp32 -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32 -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_common/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_system/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_system/port/soc -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_system/port/include/private -IC:/Users/guill/esp/v5.5.1/esp-idf/components/xtensa/esp32/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/xtensa/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/xtensa/deprecated_include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/driver/deprecated -IC:/Users/guill/esp/v5.5.1/esp-idf/components/driver/i2c/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/driver/touch_sensor/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/driver/twai/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/driver/touch_sensor/esp32/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_pm/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_ringbuf/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_gpio/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_pcnt/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_gptimer/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_spi/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_mcpwm/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_ana_cmpr/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_i2s/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_sdmmc/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/sdmmc/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_sdspi/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_sdio/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_dac/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_rmt/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_tsens/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_sdm/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_i2c/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_uart/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_ledc/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_parlio/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_twai/include -mlongcalls -Wno-frame-address  -fno-builtin-memcpy -fno-builtin-memset -fno-builtin-bzero -fno-builtin-stpcpy -fno-builtin-strncpy -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-error=extra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave=. -fmacro-prefix-map=C:/Users/guill/esp/v5.5.1/esp-idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/OD.c.obj -MF esp-idf\canopennode\CMakeFiles\__idf_canopennode.dir\OD.c.obj.d -o esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/OD.c.obj -c C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:54:6: error: 'OD_PERSIST_COMM_t' has no member named 'x1401_RPDOCoUEmmunicationParameter'; did you mean 'x1401_RPDOCommunicationParameter'?
+   54 |     .x1401_RPDOCoUEmmunicationParameter = {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |      x1401_RPDOCommunicationParameter
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:116:6: error: 'OD_PERSIST_COMM_t' has no member named 'o_1F50_programDownload'
+  116 |     .o_1F50_programDownload = {
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:117:10: error: 'struct <anonymous>' has no member named 'dataOrig0'
+  117 |         .dataOrig0 = &OD_RAM.x1F50_programDownload.highestSub_indexSupported,
+      |          ^~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:117:22: error: initialization of 'unsigned char' from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  117 |         .dataOrig0 = &OD_RAM.x1F50_programDownload.highestSub_indexSupported,
+      |                      ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:117:22: note: (near initialization for 'OD_PERSIST_COMM.x1800_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:117:22: error: initializer element is not computable at load time
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:117:22: note: (near initialization for 'OD_PERSIST_COMM.x1800_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:118:10: error: 'struct <anonymous>' has no member named 'dataOrig'
+  118 |         .dataOrig = &OD_RAM.x1F50_programDownload.data,
+      |          ^~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:118:21: error: initialization of 'long unsigned int' from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  118 |         .dataOrig = &OD_RAM.x1F50_programDownload.data,
+      |                     ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:118:21: note: (near initialization for 'OD_PERSIST_COMM.x1800_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:119:10: error: 'struct <anonymous>' has no member named 'attribute0'
+  119 |         .attribute0 = ODA_SDO_R,
+      |          ^~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:120:10: error: 'struct <anonymous>' has no member named 'attribute'
+  120 |         .attribute = ODA_SDO_W,
+      |          ^~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:121:10: error: 'struct <anonymous>' has no member named 'dataElementLength'
+  121 |         .dataElementLength = 1,
+      |          ^~~~~~~~~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:122:10: error: 'struct <anonymous>' has no member named 'dataElementSizeof'
+  122 |         .dataElementSizeof = sizeof(uint8_t)
+      |          ^~~~~~~~~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:124:6: error: 'OD_PERSIST_COMM_t' has no member named 'o_1F51_programControl'
+  124 |     .o_1F51_programControl = {
+      |      ^~~~~~~~~~~~~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:125:9: warning: braces around scalar initializer
+  125 |         {
+      |         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:125:9: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:126:13: error: field name not in record or union initializer
+  126 |             .dataOrig = &OD_RAM.x1F51_programControl.highestSub_indexSupported,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:126:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:126:25: error: initialization of 'uint8_t' {aka 'unsigned char'} from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  126 |             .dataOrig = &OD_RAM.x1F51_programControl.highestSub_indexSupported,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:126:25: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:126:25: error: initializer element is not computable at load time
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:126:25: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:127:13: error: field name not in record or union initializer
+  127 |             .subIndex = 0,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:127:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:127:25: warning: excess elements in scalar initializer
+  127 |             .subIndex = 0,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:127:25: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:128:13: error: field name not in record or union initializer
+  128 |             .attribute = ODA_SDO_R,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:128:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:128:26: warning: excess elements in scalar initializer
+  128 |             .attribute = ODA_SDO_R,
+      |                          ^~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:128:26: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:129:13: error: field name not in record or union initializer
+  129 |             .dataLength = 1
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:129:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:129:27: warning: excess elements in scalar initializer
+  129 |             .dataLength = 1
+      |                           ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:129:27: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:131:9: warning: braces around scalar initializer
+  131 |         {
+      |         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:131:9: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:132:13: error: field name not in record or union initializer
+  132 |             .dataOrig = &OD_RAM.x1F51_programControl.payload[0],
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:132:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:132:25: error: initialization of 'uint32_t' {aka 'long unsigned int'} from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  132 |             .dataOrig = &OD_RAM.x1F51_programControl.payload[0],
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:132:25: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:133:13: error: field name not in record or union initializer
+  133 |             .subIndex = 1,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:133:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:133:25: warning: excess elements in scalar initializer
+  133 |             .subIndex = 1,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:133:25: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:134:13: error: field name not in record or union initializer
+  134 |             .attribute = ODA_SDO_RW | ODA_MB,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:134:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:134:26: warning: excess elements in scalar initializer
+  134 |             .attribute = ODA_SDO_RW | ODA_MB,
+      |                          ^~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:134:26: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:135:13: error: field name not in record or union initializer
+  135 |             .dataLength = sizeof(OD_RAM.x1F51_programControl.payload)
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:135:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:135:27: warning: excess elements in scalar initializer
+  135 |             .dataLength = sizeof(OD_RAM.x1F51_programControl.payload)
+      |                           ^~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:135:27: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:138:6: error: 'OD_PERSIST_COMM_t' has no member named 'o_1F57_programIdentification'
+  138 |     .o_1F57_programIdentification = {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:139:9: warning: braces around scalar initializer
+  139 |         {
+      |         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:139:9: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:140:13: error: field name not in record or union initializer
+  140 |             .dataOrig = &OD_RAM.x1F57_programIdentification.highestSub_indexSupported,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:140:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:140:25: error: initialization of 'uint8_t' {aka 'unsigned char'} from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  140 |             .dataOrig = &OD_RAM.x1F57_programIdentification.highestSub_indexSupported,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:140:25: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:140:25: error: initializer element is not computable at load time
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:140:25: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:141:13: error: field name not in record or union initializer
+  141 |             .subIndex = 0,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:141:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:141:25: warning: excess elements in scalar initializer
+  141 |             .subIndex = 0,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:141:25: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:142:13: error: field name not in record or union initializer
+  142 |             .attribute = ODA_SDO_R,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:142:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:142:26: warning: excess elements in scalar initializer
+  142 |             .attribute = ODA_SDO_R,
+      |                          ^~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:142:26: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:143:13: error: field name not in record or union initializer
+  143 |             .dataLength = 1
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:143:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:143:27: warning: excess elements in scalar initializer
+  143 |             .dataLength = 1
+      |                           ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:143:27: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:145:9: warning: braces around scalar initializer
+  145 |         {
+      |         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:145:9: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:146:13: error: field name not in record or union initializer
+  146 |             .dataOrig = &OD_RAM.x1F57_programIdentification.payload[0],
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:146:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:146:25: error: initialization of 'uint32_t' {aka 'long unsigned int'} from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  146 |             .dataOrig = &OD_RAM.x1F57_programIdentification.payload[0],
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:146:25: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:147:13: error: field name not in record or union initializer
+  147 |             .subIndex = 1,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:147:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:147:25: warning: excess elements in scalar initializer
+  147 |             .subIndex = 1,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:147:25: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:148:13: error: field name not in record or union initializer
+  148 |             .attribute = ODA_SDO_RW | ODA_MB,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:148:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:148:26: warning: excess elements in scalar initializer
+  148 |             .attribute = ODA_SDO_RW | ODA_MB,
+      |                          ^~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:148:26: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:149:13: error: field name not in record or union initializer
+  149 |             .dataLength = sizeof(OD_RAM.x1F57_programIdentification.payload)
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:149:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:149:27: warning: excess elements in scalar initializer
+  149 |             .dataLength = sizeof(OD_RAM.x1F57_programIdentification.payload)
+      |                           ^~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:149:27: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:152:6: error: 'OD_PERSIST_COMM_t' has no member named 'o_1F5A_programStatus'
+  152 |     .o_1F5A_programStatus = {
+      |      ^~~~~~~~~~~~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:153:9: warning: braces around scalar initializer
+  153 |         {
+      |         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:153:9: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:154:13: error: field name not in record or union initializer
+  154 |             .dataOrig = &OD_RAM.x1F5A_programStatus.highestSub_indexSupported,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:154:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:154:25: error: initialization of 'uint8_t' {aka 'unsigned char'} from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  154 |             .dataOrig = &OD_RAM.x1F5A_programStatus.highestSub_indexSupported,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:154:25: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:154:25: error: initializer element is not computable at load time
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:154:25: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:155:13: error: field name not in record or union initializer
+  155 |             .subIndex = 0,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:155:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:155:25: warning: excess elements in scalar initializer
+  155 |             .subIndex = 0,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:155:25: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:156:13: error: field name not in record or union initializer
+  156 |             .attribute = ODA_SDO_R,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:156:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:156:26: warning: excess elements in scalar initializer
+  156 |             .attribute = ODA_SDO_R,
+      |                          ^~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:156:26: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:157:13: error: field name not in record or union initializer
+  157 |             .dataLength = 1
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:157:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:157:27: warning: excess elements in scalar initializer
+  157 |             .dataLength = 1
+      |                           ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:157:27: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:159:9: warning: braces around scalar initializer
+  159 |         {
+      |         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:159:9: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:160:13: error: field name not in record or union initializer
+  160 |             .dataOrig = &OD_RAM.x1F5A_programStatus.payload[0],
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:160:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:160:25: error: initialization of 'uint32_t' {aka 'long unsigned int'} from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  160 |             .dataOrig = &OD_RAM.x1F5A_programStatus.payload[0],
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:160:25: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:161:13: error: field name not in record or union initializer
+  161 |             .subIndex = 1,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:161:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:161:25: warning: excess elements in scalar initializer
+  161 |             .subIndex = 1,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:161:25: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:162:13: error: field name not in record or union initializer
+  162 |             .attribute = ODA_SDO_RW | ODA_MB,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:162:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:162:26: warning: excess elements in scalar initializer
+  162 |             .attribute = ODA_SDO_RW | ODA_MB,
+      |                          ^~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:162:26: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:163:13: error: field name not in record or union initializer
+  163 |             .dataLength = sizeof(OD_RAM.x1F5A_programStatus.payload)
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:163:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:163:27: warning: excess elements in scalar initializer
+  163 |             .dataLength = sizeof(OD_RAM.x1F5A_programStatus.payload)
+      |                           ^~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:163:27: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:166:5: error: expected '}' before '.' token
+  166 |     .x1800_TPDOCommunicationParameter = {
+      |     ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:23:58: note: to match this '{'
+   23 | OD_ATTR_PERSIST_COMM OD_PERSIST_COMM_t OD_PERSIST_COMM = {
+      |                                                          ^
+[566/598] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/CANopen.c.obj
+[567/598] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/CO_driver.c.obj
+[568/598] Linking C static library esp-idf\driver\libdriver.a
+[569/598] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/301/CO_fifo.c.obj
+[570/598] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/301/CO_Emergency.c.obj
+[571/598] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/301/CO_NMT_Heartbeat.c.obj
+[572/598] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/301/CO_HBconsumer.c.obj
+[573/598] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/301/CO_ODinterface.c.obj
+[574/598] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/301/CO_SYNC.c.obj
+[575/598] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/301/CO_SDOserver.c.obj
+[576/598] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/301/CO_TIME.c.obj
+[577/598] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/301/CO_SDOclient.c.obj
+[578/598] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/301/CO_PDO.c.obj
+ninja: build stopped: subcommand failed.

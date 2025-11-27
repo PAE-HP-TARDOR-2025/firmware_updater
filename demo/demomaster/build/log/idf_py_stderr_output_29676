@@ -1,0 +1,7 @@
+Command: ninja flash
+CMake Warning at CMakeLists.txt:30 (message):
+  Slave artifact
+  C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/../demoslave/artifacts/bye.bin
+  not found.  Using previously staged SPIFFS payload.
+
+

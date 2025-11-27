@@ -15,7 +15,7 @@ REPO_ROOT = Path(__file__).resolve().parent
 PROJECT_DIR = REPO_ROOT / "demoslave"
 DEFAULT_GREETING_PAIRS = (
     ("hello", "Hello from slave"),
-    ("bye", "Bye from slave"),
+    ("bye", "Firmware update ready"),
 )
 
 

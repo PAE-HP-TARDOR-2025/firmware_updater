@@ -6,6 +6,7 @@ idf_component_register(
         spi_flash
         nvs_flash
         spiffs
+        esp_timer
         driver
         canopennode
     INCLUDE_DIRS

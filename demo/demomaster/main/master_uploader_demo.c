@@ -1,5 +1,6 @@
 #include "master_uploader_demo.h"
 
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,6 +9,7 @@
 #include "freertos/task.h"
 
 #include "CANopen.h"
+#include "CO_SDOclient.h"
 
 #define log_master(fmt, ...) printf("[FW-MASTER] " fmt, ##__VA_ARGS__)
 #define log_error(fmt, ...)  printf("[FW-ERROR ] " fmt, ##__VA_ARGS__)
@@ -21,7 +23,7 @@
         }                                                                                                              \
     } while (0)
 
-#define SDO_TIMEOUT_US 1000000U
+#define SDO_TIMEOUT_US 60000U
 #define SDO_POLL_US     1000U
 
 enum {
@@ -32,7 +34,7 @@ enum {
 };
 
 typedef struct {
-    uint8_t *buffer;
+    FILE *file;
     size_t size;
 } fw_payload_t;
 
@@ -108,39 +110,41 @@ static bool fw_sdo_download(uint16_t index, uint8_t subIndex, const uint8_t *dat
     return true;
 }
 
-static bool fw_load_payload(const fw_upload_plan_t *plan, fw_payload_t *payload) {
-    FILE *f = fopen(plan->firmwarePath, "rb");
-    RETURN_IF_FALSE(f != NULL, "Cannot open firmware file %s", plan->firmwarePath);
+static bool fw_open_payload(const fw_upload_plan_t *plan, fw_payload_t *payload) {
+    payload->file = fopen(plan->firmwarePath, "rb");
+    RETURN_IF_FALSE(payload->file != NULL, "Cannot open firmware file %s", plan->firmwarePath);
 
-    if (fseek(f, 0, SEEK_END) != 0) {
-        fclose(f);
+    if (fseek(payload->file, 0, SEEK_END) != 0) {
+        fclose(payload->file);
+        payload->file = NULL;
         log_error("Failed to seek to end of %s\n", plan->firmwarePath);
         return false;
     }
 
-    long fileSize = ftell(f);
+    long fileSize = ftell(payload->file);
     RETURN_IF_FALSE(fileSize > 0, "Firmware file %s is empty", plan->firmwarePath);
 
-    if (fseek(f, 0, SEEK_SET) != 0) {
-        fclose(f);
+    if (fseek(payload->file, 0, SEEK_SET) != 0) {
+        fclose(payload->file);
+        payload->file = NULL;
         log_error("Failed to rewind file %s\n", plan->firmwarePath);
         return false;
     }
 
-    payload->buffer = (uint8_t *)malloc((size_t)fileSize);
-    RETURN_IF_FALSE(payload->buffer != NULL, "Out of memory while reading firmware");
-
-    size_t readBytes = fread(payload->buffer, 1, (size_t)fileSize, f);
-    fclose(f);
-    RETURN_IF_FALSE(readBytes == (size_t)fileSize, "Short read: expected %ld bytes, got %zu", fileSize, readBytes);
-
-    payload->size = readBytes;
-    log_master("Loaded %zu bytes from %s\n", payload->size, plan->firmwarePath);
+    payload->size = (size_t)fileSize;
+    log_master("Prepared %zu-byte firmware image from %s\n", payload->size, plan->firmwarePath);
     return true;
 }
 
-static uint16_t fw_crc16(const uint8_t *data, size_t len) {
-    uint16_t crc = 0xFFFFU;
+static void fw_close_payload(fw_payload_t *payload) {
+    if (payload->file != NULL) {
+        fclose(payload->file);
+        payload->file = NULL;
+    }
+    payload->size = 0U;
+}
+
+static uint16_t fw_crc16_update(uint16_t crc, const uint8_t *data, size_t len) {
     for (size_t i = 0; i < len; i++) {
         crc ^= (uint16_t)data[i] << 8;
         for (int bit = 0; bit < 8; bit++) {
@@ -154,16 +158,35 @@ static uint16_t fw_crc16(const uint8_t *data, size_t len) {
     return crc;
 }
 
-static bool send_metadata_to_slave(const fw_upload_plan_t *plan, const fw_payload_t *payload, uint16_t crc) {
+static bool fw_crc16_stream(FILE *file, size_t fileSize, uint8_t *scratch, size_t scratchLen, uint16_t *outCrc) {
+    RETURN_IF_FALSE(file != NULL, "Firmware file handle is NULL");
+    RETURN_IF_FALSE(scratch != NULL && scratchLen > 0U, "Scratch buffer not available");
+
+    uint16_t crc = 0xFFFFU;
+    size_t remaining = fileSize;
+    while (remaining > 0U) {
+        size_t chunk = remaining < scratchLen ? remaining : scratchLen;
+        size_t read = fread(scratch, 1, chunk, file);
+        RETURN_IF_FALSE(read == chunk, "Short read while computing CRC");
+        crc = fw_crc16_update(crc, scratch, chunk);
+        remaining -= chunk;
+    }
+
+    RETURN_IF_FALSE(fseek(file, 0, SEEK_SET) == 0, "Failed to rewind firmware after CRC pass");
+    *outCrc = crc;
+    return true;
+}
+
+static bool send_metadata_to_slave(const fw_upload_plan_t *plan, size_t imageBytes, uint16_t crc) {
     log_master("Sending metadata to slave node %u\n", plan->targetNodeId);
-    log_master(" - image bytes : %zu\n", payload->size);
+    log_master(" - image bytes : %zu\n", imageBytes);
     log_master(" - crc         : 0x%04X\n", crc);
     log_master(" - image type  : %u\n", plan->type);
     log_master(" - bank        : %u\n", plan->targetBank);
     RETURN_IF_FALSE(fw_master_select_target(plan->targetNodeId), "Unable to reach node %u", plan->targetNodeId);
 
     const fw_metadata_record_t meta = {
-        .imageBytes = (uint32_t)payload->size,
+        .imageBytes = (uint32_t)imageBytes,
         .crc = crc,
         .imageType = (uint8_t)plan->type,
         .bank = plan->targetBank};
@@ -192,15 +215,23 @@ static bool send_finalize_request(const fw_upload_plan_t *plan, uint16_t crc) {
     return fw_sdo_download(FW_STATUS_INDEX, 1U, crcBytes, sizeof(crcBytes), "finalize request");
 }
 
-static bool fw_stream_payload(const fw_upload_plan_t *plan, const fw_payload_t *payload) {
+static bool fw_stream_payload(const fw_upload_plan_t *plan,
+                              fw_payload_t *payload,
+                              uint8_t *chunkBuffer,
+                              size_t chunkCapacity) {
+    RETURN_IF_FALSE(payload->file != NULL, "Firmware file handle is NULL");
+    RETURN_IF_FALSE(chunkBuffer != NULL && chunkCapacity > 0U, "Chunk buffer missing");
+
     size_t offset = 0;
     while (offset < payload->size) {
         size_t remaining = payload->size - offset;
-        size_t len = remaining < plan->maxChunkBytes ? remaining : plan->maxChunkBytes;
-        if (!send_chunk_to_slave(plan, payload->buffer + offset, len, offset)) {
+        size_t toRead = remaining < chunkCapacity ? remaining : chunkCapacity;
+        size_t read = fread(chunkBuffer, 1, toRead, payload->file);
+        RETURN_IF_FALSE(read == toRead, "Short read while streaming firmware");
+        if (!send_chunk_to_slave(plan, chunkBuffer, read, offset)) {
             return false;
         }
-        offset += len;
+        offset += read;
     }
     return true;
 }
@@ -211,19 +242,35 @@ bool fw_run_upload_session(const fw_upload_plan_t *plan) {
     RETURN_IF_FALSE(fw_master_select_target(plan->targetNodeId), "Failed to select node %u", plan->targetNodeId);
 
     fw_payload_t payload = {0};
-    if (!fw_load_payload(plan, &payload)) {
+    if (!fw_open_payload(plan, &payload)) {
+        return false;
+    }
+
+    RETURN_IF_FALSE(plan->maxChunkBytes > 0U, "Chunk size must be greater than zero");
+    uint8_t *chunkBuffer = (uint8_t *)malloc(plan->maxChunkBytes);
+    if (chunkBuffer == NULL) {
+        fw_close_payload(&payload);
+        log_error("Out of memory while allocating chunk buffer (%" PRIu32 " bytes)", plan->maxChunkBytes);
         return false;
     }
 
     uint16_t crc = plan->expectedCrc;
     if (crc == 0U) {
-        crc = fw_crc16(payload.buffer, payload.size);
+        if (!fw_crc16_stream(payload.file, payload.size, chunkBuffer, plan->maxChunkBytes, &crc)) {
+            free(chunkBuffer);
+            fw_close_payload(&payload);
+            return false;
+        }
         log_master("Auto-computed crc: 0x%04X\n", crc);
+    } else {
+        log_master("Using provided crc: 0x%04X\n", crc);
     }
 
-    bool ok = send_metadata_to_slave(plan, &payload, crc) && send_start_command(plan) &&
-              fw_stream_payload(plan, &payload) && send_finalize_request(plan, crc);
+    bool ok = send_metadata_to_slave(plan, payload.size, crc) && send_start_command(plan) &&
+              fw_stream_payload(plan, &payload, chunkBuffer, plan->maxChunkBytes) &&
+              send_finalize_request(plan, crc);
 
-    free(payload.buffer);
+    free(chunkBuffer);
+    fw_close_payload(&payload);
     return ok;
 }

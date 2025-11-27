@@ -1,0 +1,33 @@
+Command: ninja storage-flash
+[1/2] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\guill\OneDrive\Documents\firmware_updater\demo\demomaster\build && C:\Espressif\python_env\idf5.5_py3.10_env\Scripts\python.exe C:/Users/guill/esp/v5.5.1/esp-idf/components/spiffs/spiffsgen.py 0x50000 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/storage C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build/storage.bin --page-size=256 --obj-name-len=32 --meta-len=4 --use-magic --use-magic-len"
+[1/2] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\guill\OneDrive\Documents\firmware_updater\demo\demomaster && C:\Espressif\tools\cmake\3.30.2\bin\cmake.exe -D IDF_PATH=C:/Users/guill/esp/v5.5.1/esp-idf -D SERIAL_TOOL=C:/Espressif/python_env/idf5.5_py3.10_env/Scripts/python.exe;;C:/Users/guill/esp/v5.5.1/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@storage-flash_args -D WORKING_DIRECTORY=C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demomaster/build -P C:/Users/guill/esp/v5.5.1/esp-idf/components/esptool_py/run_serial_tool.cmake"
+esptool.py --chip esp32 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 2MB 0x10000 storage.bin
+esptool.py v4.10.0
+Found 8 serial ports
+Serial port COM7
+Connecting..............
+Chip is ESP32-D0WDQ6 (revision v1.0)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+WARNING: Detected crystal freq 41.01MHz is quite different to normalized freq 40MHz. Unsupported crystal in use?
+Crystal is 40MHz
+MAC: cc:50:e3:99:67:10
+Uploading stub...
+Running stub...
+Stub running...
+Configuring flash size...
+Flash will be erased from 0x00010000 to 0x0005ffff...
+Compressed 327680 bytes to 134266...
+Writing at 0x00010000... (11 %)
+Writing at 0x0001b5b9... (22 %)
+Writing at 0x000235a6... (33 %)
+Writing at 0x00028e9a... (44 %)
+Writing at 0x0002ec7e... (55 %)
+Writing at 0x00034c30... (66 %)
+Writing at 0x0003d78b... (77 %)
+Writing at 0x00043b63... (88 %)
+Writing at 0x0004a49a... (100 %)
+Wrote 327680 bytes (134266 compressed) at 0x00010000 in 12.4 seconds (effective 211.0 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...

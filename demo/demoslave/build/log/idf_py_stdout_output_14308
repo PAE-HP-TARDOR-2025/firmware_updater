@@ -1,0 +1,292 @@
+Command: ninja all
+[1/21] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\guill\OneDrive\Documents\firmware_updater\demo\demoslave\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.5_py3.10_env\Scripts\python.exe C:/Users/guill/esp/v5.5.1/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/build/bootloader/bootloader.bin"
+Bootloader binary size 0x6680 bytes. 0x980 bytes (8%) free.
+[2/21] No install step for 'bootloader'
+[3/21] Completed 'bootloader'
+[4/21] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/OD.c.obj
+FAILED: esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/OD.c.obj 
+ccache C:\Espressif\tools\xtensa-esp-elf\esp-14.2.0_20241119\xtensa-esp-elf\bin\xtensa-esp32-elf-gcc.exe -DCO_CONFIG_FIFO=CO_CONFIG_FIFO_ENABLE -DCO_CONFIG_SDO_CLI=0x03 -DESP_PLATFORM -DIDF_VER=\"v5.5.1\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/build/config -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/301 -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/303 -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/304 -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/305 -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/309 -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/storage -IC:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/extra -IC:/Users/guill/esp/v5.5.1/esp-idf/components/newlib/platform_include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/config/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/config/include/freertos -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/config/xtensa/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/FreeRTOS-Kernel/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -IC:/Users/guill/esp/v5.5.1/esp-idf/components/freertos/esp_additions/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/include/soc -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/include/soc/esp32 -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/dma/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/ldo/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/debug_probe/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/mspi_timing_tuning/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/mspi_timing_tuning/tuning_scheme_impl/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/power_supply/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/port/esp32/. -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_hw_support/port/esp32/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/heap/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/heap/tlsf -IC:/Users/guill/esp/v5.5.1/esp-idf/components/log/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/soc/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/soc/esp32 -IC:/Users/guill/esp/v5.5.1/esp-idf/components/soc/esp32/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/soc/esp32/register -IC:/Users/guill/esp/v5.5.1/esp-idf/components/hal/platform_port/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/hal/esp32/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/hal/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32/include/esp32 -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_rom/esp32 -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_common/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_system/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_system/port/soc -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_system/port/include/private -IC:/Users/guill/esp/v5.5.1/esp-idf/components/xtensa/esp32/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/xtensa/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/xtensa/deprecated_include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/driver/deprecated -IC:/Users/guill/esp/v5.5.1/esp-idf/components/driver/i2c/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/driver/touch_sensor/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/driver/twai/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/driver/touch_sensor/esp32/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_pm/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_ringbuf/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_gpio/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_pcnt/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_gptimer/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_spi/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_mcpwm/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_ana_cmpr/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_i2s/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_sdmmc/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/sdmmc/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_sdspi/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_sdio/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_dac/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_rmt/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_tsens/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_sdm/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_i2c/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_uart/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_ledc/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_parlio/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_usb_serial_jtag/include -IC:/Users/guill/esp/v5.5.1/esp-idf/components/esp_driver_twai/include -mlongcalls -Wno-frame-address  -fno-builtin-memcpy -fno-builtin-memset -fno-builtin-bzero -fno-builtin-stpcpy -fno-builtin-strncpy -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-error=extra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave=. -fmacro-prefix-map=C:/Users/guill/esp/v5.5.1/esp-idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/OD.c.obj -MF esp-idf\canopennode\CMakeFiles\__idf_canopennode.dir\OD.c.obj.d -o esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/OD.c.obj -c C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:54:6: error: 'OD_PERSIST_COMM_t' has no member named 'x1401_RPDOCoUEmmunicationParameter'; did you mean 'x1401_RPDOCommunicationParameter'?
+   54 |     .x1401_RPDOCoUEmmunicationParameter = {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |      x1401_RPDOCommunicationParameter
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:116:6: error: 'OD_PERSIST_COMM_t' has no member named 'o_1F50_programDownload'
+  116 |     .o_1F50_programDownload = {
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:117:10: error: 'struct <anonymous>' has no member named 'dataOrig0'
+  117 |         .dataOrig0 = &OD_RAM.x1F50_programDownload.highestSub_indexSupported,
+      |          ^~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:117:22: error: initialization of 'unsigned char' from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  117 |         .dataOrig0 = &OD_RAM.x1F50_programDownload.highestSub_indexSupported,
+      |                      ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:117:22: note: (near initialization for 'OD_PERSIST_COMM.x1800_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:117:22: error: initializer element is not computable at load time
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:117:22: note: (near initialization for 'OD_PERSIST_COMM.x1800_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:118:10: error: 'struct <anonymous>' has no member named 'dataOrig'
+  118 |         .dataOrig = &OD_RAM.x1F50_programDownload.data,
+      |          ^~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:118:21: error: initialization of 'long unsigned int' from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  118 |         .dataOrig = &OD_RAM.x1F50_programDownload.data,
+      |                     ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:118:21: note: (near initialization for 'OD_PERSIST_COMM.x1800_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:119:10: error: 'struct <anonymous>' has no member named 'attribute0'
+  119 |         .attribute0 = ODA_SDO_R,
+      |          ^~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:120:10: error: 'struct <anonymous>' has no member named 'attribute'
+  120 |         .attribute = ODA_SDO_W,
+      |          ^~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:121:10: error: 'struct <anonymous>' has no member named 'dataElementLength'
+  121 |         .dataElementLength = 1,
+      |          ^~~~~~~~~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:122:10: error: 'struct <anonymous>' has no member named 'dataElementSizeof'
+  122 |         .dataElementSizeof = sizeof(uint8_t)
+      |          ^~~~~~~~~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:124:6: error: 'OD_PERSIST_COMM_t' has no member named 'o_1F51_programControl'
+  124 |     .o_1F51_programControl = {
+      |      ^~~~~~~~~~~~~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:125:9: warning: braces around scalar initializer
+  125 |         {
+      |         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:125:9: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:126:13: error: field name not in record or union initializer
+  126 |             .dataOrig = &OD_RAM.x1F51_programControl.highestSub_indexSupported,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:126:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:126:25: error: initialization of 'uint8_t' {aka 'unsigned char'} from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  126 |             .dataOrig = &OD_RAM.x1F51_programControl.highestSub_indexSupported,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:126:25: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:126:25: error: initializer element is not computable at load time
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:126:25: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:127:13: error: field name not in record or union initializer
+  127 |             .subIndex = 0,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:127:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:127:25: warning: excess elements in scalar initializer
+  127 |             .subIndex = 0,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:127:25: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:128:13: error: field name not in record or union initializer
+  128 |             .attribute = ODA_SDO_R,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:128:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:128:26: warning: excess elements in scalar initializer
+  128 |             .attribute = ODA_SDO_R,
+      |                          ^~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:128:26: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:129:13: error: field name not in record or union initializer
+  129 |             .dataLength = 1
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:129:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:129:27: warning: excess elements in scalar initializer
+  129 |             .dataLength = 1
+      |                           ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:129:27: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:131:9: warning: braces around scalar initializer
+  131 |         {
+      |         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:131:9: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:132:13: error: field name not in record or union initializer
+  132 |             .dataOrig = &OD_RAM.x1F51_programControl.payload[0],
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:132:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:132:25: error: initialization of 'uint32_t' {aka 'long unsigned int'} from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  132 |             .dataOrig = &OD_RAM.x1F51_programControl.payload[0],
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:132:25: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:133:13: error: field name not in record or union initializer
+  133 |             .subIndex = 1,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:133:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:133:25: warning: excess elements in scalar initializer
+  133 |             .subIndex = 1,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:133:25: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:134:13: error: field name not in record or union initializer
+  134 |             .attribute = ODA_SDO_RW | ODA_MB,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:134:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:134:26: warning: excess elements in scalar initializer
+  134 |             .attribute = ODA_SDO_RW | ODA_MB,
+      |                          ^~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:134:26: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:135:13: error: field name not in record or union initializer
+  135 |             .dataLength = sizeof(OD_RAM.x1F51_programControl.payload)
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:135:13: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:135:27: warning: excess elements in scalar initializer
+  135 |             .dataLength = sizeof(OD_RAM.x1F51_programControl.payload)
+      |                           ^~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:135:27: note: (near initialization for 'OD_PERSIST_COMM.x1801_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:138:6: error: 'OD_PERSIST_COMM_t' has no member named 'o_1F57_programIdentification'
+  138 |     .o_1F57_programIdentification = {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:139:9: warning: braces around scalar initializer
+  139 |         {
+      |         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:139:9: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:140:13: error: field name not in record or union initializer
+  140 |             .dataOrig = &OD_RAM.x1F57_programIdentification.highestSub_indexSupported,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:140:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:140:25: error: initialization of 'uint8_t' {aka 'unsigned char'} from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  140 |             .dataOrig = &OD_RAM.x1F57_programIdentification.highestSub_indexSupported,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:140:25: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:140:25: error: initializer element is not computable at load time
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:140:25: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:141:13: error: field name not in record or union initializer
+  141 |             .subIndex = 0,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:141:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:141:25: warning: excess elements in scalar initializer
+  141 |             .subIndex = 0,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:141:25: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:142:13: error: field name not in record or union initializer
+  142 |             .attribute = ODA_SDO_R,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:142:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:142:26: warning: excess elements in scalar initializer
+  142 |             .attribute = ODA_SDO_R,
+      |                          ^~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:142:26: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:143:13: error: field name not in record or union initializer
+  143 |             .dataLength = 1
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:143:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:143:27: warning: excess elements in scalar initializer
+  143 |             .dataLength = 1
+      |                           ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:143:27: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:145:9: warning: braces around scalar initializer
+  145 |         {
+      |         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:145:9: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:146:13: error: field name not in record or union initializer
+  146 |             .dataOrig = &OD_RAM.x1F57_programIdentification.payload[0],
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:146:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:146:25: error: initialization of 'uint32_t' {aka 'long unsigned int'} from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  146 |             .dataOrig = &OD_RAM.x1F57_programIdentification.payload[0],
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:146:25: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:147:13: error: field name not in record or union initializer
+  147 |             .subIndex = 1,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:147:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:147:25: warning: excess elements in scalar initializer
+  147 |             .subIndex = 1,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:147:25: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:148:13: error: field name not in record or union initializer
+  148 |             .attribute = ODA_SDO_RW | ODA_MB,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:148:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:148:26: warning: excess elements in scalar initializer
+  148 |             .attribute = ODA_SDO_RW | ODA_MB,
+      |                          ^~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:148:26: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:149:13: error: field name not in record or union initializer
+  149 |             .dataLength = sizeof(OD_RAM.x1F57_programIdentification.payload)
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:149:13: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:149:27: warning: excess elements in scalar initializer
+  149 |             .dataLength = sizeof(OD_RAM.x1F57_programIdentification.payload)
+      |                           ^~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:149:27: note: (near initialization for 'OD_PERSIST_COMM.x1802_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:152:6: error: 'OD_PERSIST_COMM_t' has no member named 'o_1F5A_programStatus'
+  152 |     .o_1F5A_programStatus = {
+      |      ^~~~~~~~~~~~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:153:9: warning: braces around scalar initializer
+  153 |         {
+      |         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:153:9: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:154:13: error: field name not in record or union initializer
+  154 |             .dataOrig = &OD_RAM.x1F5A_programStatus.highestSub_indexSupported,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:154:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:154:25: error: initialization of 'uint8_t' {aka 'unsigned char'} from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  154 |             .dataOrig = &OD_RAM.x1F5A_programStatus.highestSub_indexSupported,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:154:25: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:154:25: error: initializer element is not computable at load time
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:154:25: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:155:13: error: field name not in record or union initializer
+  155 |             .subIndex = 0,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:155:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:155:25: warning: excess elements in scalar initializer
+  155 |             .subIndex = 0,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:155:25: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:156:13: error: field name not in record or union initializer
+  156 |             .attribute = ODA_SDO_R,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:156:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:156:26: warning: excess elements in scalar initializer
+  156 |             .attribute = ODA_SDO_R,
+      |                          ^~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:156:26: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:157:13: error: field name not in record or union initializer
+  157 |             .dataLength = 1
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:157:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:157:27: warning: excess elements in scalar initializer
+  157 |             .dataLength = 1
+      |                           ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:157:27: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.highestSub_indexSupported')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:159:9: warning: braces around scalar initializer
+  159 |         {
+      |         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:159:9: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:160:13: error: field name not in record or union initializer
+  160 |             .dataOrig = &OD_RAM.x1F5A_programStatus.payload[0],
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:160:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:160:25: error: initialization of 'uint32_t' {aka 'long unsigned int'} from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+  160 |             .dataOrig = &OD_RAM.x1F5A_programStatus.payload[0],
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:160:25: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:161:13: error: field name not in record or union initializer
+  161 |             .subIndex = 1,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:161:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:161:25: warning: excess elements in scalar initializer
+  161 |             .subIndex = 1,
+      |                         ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:161:25: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:162:13: error: field name not in record or union initializer
+  162 |             .attribute = ODA_SDO_RW | ODA_MB,
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:162:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:162:26: warning: excess elements in scalar initializer
+  162 |             .attribute = ODA_SDO_RW | ODA_MB,
+      |                          ^~~~~~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:162:26: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:163:13: error: field name not in record or union initializer
+  163 |             .dataLength = sizeof(OD_RAM.x1F5A_programStatus.payload)
+      |             ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:163:13: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:163:27: warning: excess elements in scalar initializer
+  163 |             .dataLength = sizeof(OD_RAM.x1F5A_programStatus.payload)
+      |                           ^~~~~~
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:163:27: note: (near initialization for 'OD_PERSIST_COMM.x1803_TPDOCommunicationParameter.COB_IDUsedByTPDO')
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:166:5: error: expected '}' before '.' token
+  166 |     .x1800_TPDOCommunicationParameter = {
+      |     ^
+C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode/OD.c:23:58: note: to match this '{'
+   23 | OD_ATTR_PERSIST_COMM OD_PERSIST_COMM_t OD_PERSIST_COMM = {
+      |                                                          ^
+[5/21] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/extra/CO_trace.c.obj
+[6/21] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/305/CO_LSSmaster.c.obj
+[7/21] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/301/crc16-ccitt.c.obj
+[8/21] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/304/CO_GFC.c.obj
+[9/21] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/303/CO_LEDs.c.obj
+[10/21] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/304/CO_SRDO.c.obj
+[11/21] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/309/CO_gateway_ascii.c.obj
+[12/21] Building C object esp-idf/canopennode/CMakeFiles/__idf_canopennode.dir/305/CO_LSSslave.c.obj
+[13/21] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/C_/Users/guill/OneDrive/Documents/firmware_updater/demo/dummy_slave_main.c.obj
+[14/21] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/fw_update_server.c.obj
+ninja: build stopped: subcommand failed.

@@ -1,4 +1,16 @@
-idf_component_register(SRCS "../../dummy_slave_main.c" INCLUDE_DIRS "")
+idf_component_register(
+    SRCS
+        "../../dummy_slave_main.c"
+        "fw_update_server.c"
+    INCLUDE_DIRS
+        "."
+    PRIV_REQUIRES
+        nvs_flash
+        esp_timer
+        driver
+        canopennode
+        app_update
+)
 
 # Allow developers and automation to override the greeting without touching sources.
 set(_slave_greeting_text "${CONFIG_SLAVE_GREETING}")

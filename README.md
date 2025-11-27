@@ -1,127 +1,101 @@
-# Firmware Updater Quickstart
+# Firmware Updater Reference
 
-This guide explains how to run the demo firmware update flow, how to drop the slave and master sources into your own project, how to obtain the firmware binary (`.bin`) from the Espressif build system, and how to drive the mock master uploader.
+This repository bundles a complete CANopen firmware update path that now runs entirely on two ESP-IDF applications:
 
-## 1. Overview of the two demo programs
+- `demo/demoslave` – CANopen slave that validates metadata, streams chunks into the inactive OTA partition, sets the next boot partition, and automatically reboots once the image is verified.
+- `demo/demomaster` – CANopen master that mounts a SPIFFS partition, serves firmware binaries from `/spiffs/*.bin`, and drives the CiA‑302 download sequence over TWAI using CANopenNode.
 
-- `main_firmware_update.c` acts as the Controller Area Network Open slave. It exposes the CiA 302 firmware download objects, validates metadata, simulates flash erases, and keeps the standard Controller Area Network Open tasks alive.
-- `master_firmware_uploader.c` represents the Controller Area Network Open master. It loads a firmware image from disk, computes the cyclic redundancy check, and echoes the sequence of metadata/start/chunk/finalize commands that you would later translate into Service Data Object client calls.
+You can reuse the same state machines on other hardware (desktop, STM32, etc.), but the demos make it easy to observe the whole loop on a pair of ESP32 boards.
 
-Both files live in `canopennode/example/firmware_updater/` so you can copy them into any project that already depends on CANopenNode.
+## Repository layout
 
-## 2. Building the bundled Espressif demo (`demo/demoslave`)
+```
+firmware_updater/
+├── main_firmware_update.c     ← generic CANopen slave reference implementation
+├── master_firmware_uploader.c ← desktop/host master reference
+├── demo/
+│   ├── build_slave_bins.py    ← helper that builds multiple slave greetings
+│   ├── artifacts/             ← `.bin` output staged for uploads
+│   ├── demoslave/             ← ESP-IDF slave project (OTA, auto reboot)
+│   └── demomaster/            ← ESP-IDF master project (SPIFFS + CANopen SDO)
+└── README.md (this file)
+```
 
-The `demo/demoslave/` folder is a self-contained ESP-IDF project that reuses `demo/dummy_slave_main.c`. It keeps the greeting text configurable through `menuconfig`, a `SLAVE_GREETING_OVERRIDE` environment variable, or the `build_slave_bins.py` helper script.
+Each ESP-IDF project also has its own README under `demo/demoslave` and `demo/demomaster` with board-specific wiring and configuration details.
 
-1. Open an ESP-IDF shell (`export.ps1` on Windows, `export.sh` on Linux/macOS) so `idf.py` is available.
-2. Build the default "hello" and "bye" binaries from the `demo/` folder:
+## Quick start (two ESP32 boards)
+
+1. **Generate slave firmware variants**
    ```pwsh
-   cd canopennode/example/firmware_updater/demo
-   python build_slave_bins.py
+   cd demo
+   python build_slave_bins.py --greeting hello:"Hello from slave" --greeting bye:"Firmware update ready"
    ```
-   - `demo/artifacts/hello.bin` and `demo/artifacts/bye.bin` are generated.
-   - Independent build directories (`demo/demoslave/build-hello`, `build-bye`, …) are created automatically so you can flash different greetings without reconfiguring.
-3. To flash one of the builds, reuse the matching build directory. Example for the "hello" image:
-   ```pwsh
-   idf.py -C demoslave -B demoslave/build-hello -p <PORT> flash monitor
-   ```
-4. Generate additional greetings (repeat the flag for each variation) or change the target chip:
-   ```pwsh
-   python build_slave_bins.py --idf-target esp32s3 \
-       --greeting hello:"Hello from slave" --greeting bye:"Bye from slave"
-   ```
-   Every greeting becomes `<name>.bin` inside `demo/artifacts/` and can later be streamed through `master_firmware_uploader`.
+   - Creates deterministic build folders (`demoslave/build-hello`, `build-bye`, …).
+   - Copies the finished binaries into `demo/artifacts/hello.bin` and `demo/artifacts/bye.bin`.
 
-## 3. Integrating the slave demo into an existing Espressif Internet Development Framework project
-
-1. Copy `firmware_updater/main_firmware_update.c` into your project’s `main/` directory (or create a dedicated component if you prefer).
-2. In that file’s accompanying `CMakeLists.txt`, make sure the call to `idf_component_register` includes `REQUIRES canopennode` so the CANopen stack links correctly:
-   ```cmake
-   idf_component_register(SRCS "main_firmware_update.c" REQUIRES canopennode)
-   ```
-3. Configure your `sdkconfig` and hardware abstraction so the CAN driver, timer callbacks, and storage hooks match your board. The demo already logs every step over the default Universal Asynchronous Receiver Transmitter, so no additional logging wiring is required.
-4. Build with the normal command:
+2. **Flash the baseline image to the slave**
    ```pwsh
+   idf.py -C demo/demoslave -B build-hello -p <SLAVE_PORT> flash monitor
+   ```
+   Keep the monitor open to watch `[SLAVE]` and `[fw_server]` logs.
+
+3. **Stage the update for the master**
+   ```pwsh
+   cd demo/demomaster
+   copy ..\artifacts\bye.bin storage\bye.bin
+   idf.py storage
+   idf.py storage-flash -p <MASTER_PORT>
+   ```
+   The SPIFFS partition named `storage` now contains `/spiffs/bye.bin`.
+
+4. **Configure and flash the master**
+   ```pwsh
+   idf.py menuconfig   # adjust TWAI pins, bit rate, firmware path, target node ID
    idf.py build
+   idf.py -p <MASTER_PORT> flash monitor
    ```
+   The master automatically starts the uploader task and runs forever.
 
-## 4. Getting the firmware `.bin`
+5. **Observe the OTA transfer**
+   - The master prints `[FW-MASTER]` metadata, start, chunk, and finalize logs.
+   - The slave prints `[fw_server]` chunk confirmations, CRC verification, and finally `Firmware image validated …`.
+   - One second later the slave reboots itself and loads the `ota_0` partition that now says “Firmware update ready”.
 
-After `idf.py build` finishes, the primary firmware image is emitted under the project’s `build/` folder. The exact file name matches your project name—for example `build/my_app.bin`. You can verify the path by inspecting `build/flasher_args.json` or running `idf.py size`.
+## How the pieces work together
 
-That `.bin` file is what the master uploader expects when you test the Controller Area Network Open transfer.
+| Stage | Master (`demo/demomaster`) | Slave (`demo/demoslave`) |
+| ----- | ------------------------- | ------------------------ |
+| Metadata (0x1F57) | Loads file from `/spiffs/*.bin`, computes CRC16/CCITT, pushes size/CRC/bank/type | Validates limits, prepares internal state |
+| Start (0x1F51) | Issues CiA‑302 start command | Calls `esp_ota_begin()` on the inactive OTA partition |
+| Data (0x1F50) | Streams file in <= chunk size blocks (default 256 B) | Pipes data straight into `esp_ota_write()` while computing CRC |
+| Status (0x1F5A) | Sends final CRC | Verifies CRC, calls `esp_ota_end()`, selects new partition, schedules auto reboot |
 
-## 5. Building and running the master uploader
+Key ESP-IDF features in use:
 
-1. From any desktop environment with a C compiler, build `master_firmware_uploader.c` (or compile it inside your preferred host application). Example with `gcc`:
-   ```pwsh
-   cd canopennode/example/firmware_updater
-   gcc master_firmware_uploader.c -o master_firmware_uploader
-   ```
-2. Run the uploader, pointing it at the `.bin` produced by your Espressif build. The optional arguments are the target node identifier and the bank number you want to program:
-   ```pwsh
-   .\master_firmware_uploader ..\..\..\..\path\to\esp-idf-project\build\my_app.bin 10 1
-   ```
-   - `10` selects node identifier 10 for the slave.
-   - `1` selects bank 1 (adjust if your bootloader uses a different scheme).
+- Two OTA partitions on a 4 MB flash map (`partitions_two_ota.csv`).
+- `esp_ota_get_next_update_partition()`/`esp_ota_write()`/`esp_ota_set_boot_partition()`.
+- Auto reboot through an ESP timer that fires ~500 ms after validation so logs reach the console before reset.
+- TWAI (CAN) driver + CANopenNode stack to speak SDO.
+- SPIFFS image baked from `demo/demomaster/storage/` to distribute firmware files.
 
-The uploader prints each stage (metadata write, start command, chunk streaming, finalize request). Replace the stubbed `send_*` helpers with real Service Data Object client calls when you are ready to talk to hardware.
+## Reusing the components
 
-## 6. Putting it all together
+- **Slave reference (`main_firmware_update.c`)** – drop this file into any CANopenNode project to get the same metadata state machine and CRC validation. Replace the ESP-specific storage hooks with your platform’s flash drivers.
+- **Master reference (`master_firmware_uploader.c`)** – compile it on a desktop to test new binaries without hardware. The ESP-IDF master app embeds the same logic but replaces the transport stubs with real `CO_SDOclient` calls.
+- **Build helper (`build_slave_bins.py`)** – reproducibly generates multiple slave binaries by greeting name, target, optimization level, etc. Use it to keep artifacts in `demo/artifacts/` up to date for regression tests.
 
-1. Flash the slave demo to your ESP32 board (`idf.py -p <PORT> flash monitor`) and keep the serial monitor open to watch the `[FW-DEMO]` logs.
-2. Build and launch the master uploader with the `.bin` you just compiled.
-3. Observe the slave’s console to confirm metadata validation, chunk receipts, and cyclic redundancy check verification. The master console should report the same stages.
-4. Once you are satisfied, replace the simulated flash hooks in `main_firmware_update.c` with real partition writes and wire the uploader’s stub calls to the CANopen Service Data Object client API.
+## Troubleshooting cheatsheet
 
-This flow gives you a complete loop—from generating a firmware image in an Espressif project, through staging it on the master, to observing the slave’s checks—before moving on to production hardware or bootloaders.
+- `Chunk rejected: expected offset …` – master and slave lost sync. Verify SDO clients aren’t retransmitting stale segments.
+- `Image size exceeds OTA partition` – adjust flash size in `demo/demoslave/sdkconfig` or reduce application footprint.
+- `esp_ota_set_boot_partition` errors – ensure both `ota_0` and `ota_1` partitions exist and that the binary fits inside them.
+- Master stuck waiting for file – confirm `/spiffs/<name>.bin` exists and that you reflashed the `storage` partition after copying the new file.
+- No reboot after finalize – the slave now schedules its own restart; if you disable auto reboot via Kconfig, manually reset the board after the `[fw_server] Firmware image validated` log.
 
-## 7. Notes for STMicroelectronics targets
+## Next steps
 
-The Controller Area Network Open logic shown here is portable. When you move from Espressif hardware to an STMicroelectronics board, only the hardware abstraction layers change:
+1. Review `demo/demoslave/README.md` for configurable node IDs, TWAI pins, and OTA tuning knobs.
+2. Review `demo/demomaster/README.md` for storage layout, wiring diagrams, and the SPIFFS workflow.
+3. Port the reference code into your production projects, replacing the dummy greeting logic with real application payloads.
 
-- **Slave side**: keep `main_firmware_update.c` but replace the CAN driver glue, timer callbacks, and flash write helpers with equivalents from the STMicroelectronics Hardware Abstraction Layer or Low-Layer drivers. The object dictionary entries, metadata validation, and state machine logic remain identical.
-- **Master side**: the uploader already runs on a desktop or any generic controller, so nothing is ST-specific. If you later port the master onto an STMicroelectronics microcontroller, reuse the same `fw_*` helpers and provide a CAN driver plus Service Data Object client implementation for that platform.
-- **Firmware artifact**: for Espressif you copy `build/my_app.bin`. For STMicroelectronics you would instead grab the binary or hexadecimal image produced by STM32CubeIDE or your preferred build system. Feed that file to the uploader the same way—the metadata structure and transfer commands stay the same.
-
-In short, the features and flow do not change between Espressif and STMicroelectronics targets; only the board-level drivers and flash access layers need to be swapped when you port the code.
-
-## 8. "Hello" versus "Not Hello" dummy demo
-
-If you want a lightweight end-to-end demonstration with visible behaviour changes, use the helper sources below:
-
-- `demo/dummy_slave_main.c` – an Espressif entry point that prints `SLAVE_GREETING` over the serial monitor once per second. Build it twice with different greetings to produce two firmware images.
-- `demo/demo_master_greeting.c` – a desktop helper that reads two firmware binaries, extracts the embedded greeting marker, and reports exactly what message the slave will print before and after the update. Use it as a dry run before streaming the new image with `master_firmware_uploader`.
-
-### 8.1 Build the hello and bye firmware
-
-```pwsh
-cd canopennode/example/firmware_updater/demo
-python build_slave_bins.py --greeting hello:"Hello from slave" --greeting bye:"Bye from slave"
-```
-
-You now have `demo/artifacts/hello.bin` and `demo/artifacts/bye.bin`. Flash `hello.bin` first so the slave boots with the greeting you expect to replace:
-
-```pwsh
-idf.py -C demoslave -B demoslave/build-hello -p <PORT> flash monitor
-```
-
-### 8.2 Compare greetings on the desktop
-
-```pwsh
-cd canopennode/example/firmware_updater
-gcc demo/demo_master_greeting.c -o demo_master_greeting
-./demo_master_greeting demo/artifacts/hello.bin demo/artifacts/bye.bin
-```
-
-The helper prints the greeting detected inside each binary and reminds you which file to upload so that the slave stops saying "hello".
-
-### 8.3 Upload the new firmware
-
-Use `master_firmware_uploader` with `demo/artifacts/bye.bin` so the slave boots the new image:
-
-```pwsh
-./master_firmware_uploader demo/artifacts/bye.bin 10 1
-```
-
-After the transfer, reset the slave (for example with `idf.py -p <PORT> monitor` and pressing `Ctrl+T Ctrl+R`). The serial log should now show "Bye from slave" (or whichever greeting you packaged) instead of the original greeting, proving the firmware swap worked.
+With these pieces running, you now have a proven CANopen OTA flow that starts from a freshly built `.bin`, stages it on the master, and ends with the slave rebooting into the new firmware automatically.

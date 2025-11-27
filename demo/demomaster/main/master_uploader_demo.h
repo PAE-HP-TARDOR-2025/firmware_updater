@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include "CO_SDOclient.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -24,9 +26,7 @@ typedef struct {
     uint16_t expectedCrc;
 } fw_upload_plan_t;
 
-struct CO_SDOclient_t;
-
-bool fw_master_bind_sdo_client(struct CO_SDOclient_t *client);
+bool fw_master_bind_sdo_client(CO_SDOclient_t *client);
 bool fw_run_upload_session(const fw_upload_plan_t *plan);
 
 #ifdef __cplusplus
