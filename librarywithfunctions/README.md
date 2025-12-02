@@ -32,6 +32,16 @@ The slave Object Dictionary copy already includes the firmware-transfer cluster 
 - `fw_slave_update.[ch]` remain a lightweight, platform-agnostic state machine you can embed in host tests or non-ESP targets; `fw_update_server.[ch]` simply wraps the same progression with ESP-IDF OTA primitives and CANopen extensions. Use whichever layer fits your integration point.
 	- Boots the CANopen stack, builds an `fw_upload_plan_t`, and runs the helper-driven upload sequence end to end.
 	- Use it as a template for wiring the master helpers into a production task (replace the stubbed SDO calls inside `fw_master_update.c`).
+
+## ESP-IDF Configuration (`sdkconfig`)
+
+- We do not check in a single `sdkconfig` file because the values depend on board flash size, pins, PSRAM, logging verbosity, and the exact ESP-IDF release. Instead, mirror the key knobs:
+	- Enable "Custom partition table" and point it to `librarywithfunctions/partitions/slave_two_ota.csv` (offset `0x8000`, MD5 enabled).
+	- Keep flash size at 4 MB or larger so the OTA slots match the CSV; adjust only if your board differs and regenerate the table accordingly.
+	- Leave SPIFFS enabled if you want to stage binaries locally; the master demo expects `/storage` to exist when flashing artifacts into SPIFFS.
+	- Preserve the UART/LOG settings used by `demo/slave/hello_world_main.c` so CANopen diagnostics and OTA messages stay visible.
+- Everything else (Wi-Fi, PSRAM, security features) can be tailored per project—those are intentionally not part of this reference snapshot.
+
 - `demo/slave/demo_slave_main.c`
 	- Standalone firmware entry point that spins up CANopen and drives `fw_slave_update` through a scripted metadata/chunk/finalize session.
 	- Mirrors the structure you would use when routing SDO server callbacks for `0x1F50/0x1F51/0x1F57/0x1F5A` to the helper functions.
