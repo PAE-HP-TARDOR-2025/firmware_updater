@@ -1,0 +1,48 @@
+#ifndef FW_MASTER_UPDATE_H
+#define FW_MASTER_UPDATE_H
+
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* Image families supported by the master uploader. */
+typedef enum {
+    FW_IMAGE_MAIN = 0,
+    FW_IMAGE_BOOTLOADER = 1,
+    FW_IMAGE_CONFIG = 2
+} fw_image_type_t;
+
+/* High-level upload description shared across helper functions. */
+typedef struct {
+    const char* firmwarePath;
+    fw_image_type_t type;
+    uint8_t targetBank;
+    uint8_t targetNodeId;
+    uint32_t maxChunkBytes;
+    uint16_t expectedCrc;
+} fw_upload_plan_t;
+
+/* Payload buffer returned by the file loader. */
+typedef struct {
+    uint8_t* buffer;
+    size_t size;
+} fw_payload_t;
+
+bool fw_master_load_payload(const fw_upload_plan_t* plan, fw_payload_t* payload);
+uint16_t fw_master_crc16(const uint8_t* data, size_t len);
+bool fw_master_send_metadata(const fw_upload_plan_t* plan, const fw_payload_t* payload, uint16_t crc);
+bool fw_master_send_start_command(const fw_upload_plan_t* plan);
+bool fw_master_send_chunk(const fw_upload_plan_t* plan, const uint8_t* chunk, size_t len, size_t offset);
+bool fw_master_send_finalize_request(const fw_upload_plan_t* plan, uint16_t crc);
+bool fw_master_stream_payload(const fw_upload_plan_t* plan, const fw_payload_t* payload);
+bool fw_master_run_upload_session(const fw_upload_plan_t* plan);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* FW_MASTER_UPDATE_H */
