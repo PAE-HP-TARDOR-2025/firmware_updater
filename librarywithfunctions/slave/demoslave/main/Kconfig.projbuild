@@ -1,0 +1,31 @@
+menu "Demo Slave Configuration"
+
+    config DEMO_SLAVE_NODE_ID
+        int "CANopen Node-ID"
+        default 10
+        range 1 127
+        help
+            CANopen node ID for the slave device.
+
+    config DEMO_SLAVE_CAN_BITRATE_KBPS
+        int "CAN bitrate (kbps)"
+        default 500
+        range 125 1000
+        help
+            CAN bus bitrate in kbps.
+
+    config DEMO_SLAVE_MAX_CHUNK_BYTES
+        int "Max OTA chunk size"
+        default 256
+        range 64 1024
+        help
+            Maximum bytes per firmware data chunk.
+
+    config DEMO_SLAVE_MAX_IMAGE_BYTES
+        int "Max image size (bytes)"
+        default 524288
+        range 65536 2097152
+        help
+            Maximum allowed firmware image size in bytes.
+
+endmenu

@@ -11,13 +11,23 @@ You can reuse the same state machines on other hardware (desktop, STM32, etc.), 
 
 ```
 firmware_updater/
-├── main_firmware_update.c     ← generic CANopen slave reference implementation
-├── master_firmware_uploader.c ← desktop/host master reference
+├── main_firmware_update.c        ← generic CANopen slave reference implementation
+├── master_firmware_uploader.c    ← desktop/host master reference
 ├── demo/
-│   ├── build_slave_bins.py    ← helper that builds multiple slave greetings
-│   ├── artifacts/             ← `.bin` output staged for uploads
-│   ├── demoslave/             ← ESP-IDF slave project (OTA, auto reboot)
-│   └── demomaster/            ← ESP-IDF master project (SPIFFS + CANopen SDO)
+│   ├── build_slave_bins.py       ← helper that builds multiple slave greetings
+│   ├── artifacts/                ← `.bin` output staged for uploads
+│   ├── demoslave/                ← ESP-IDF slave project (OTA, auto reboot)
+│   └── demomaster/               ← ESP-IDF master project (SPIFFS + CANopen SDO)
+├── librarywithfunctions/
+│   ├── master/                   ← reusable master helpers (OD, fw_master_update)
+│   ├── slave/                    ← reusable slave helpers + buildable ESP-IDF project
+│   │   ├── demoslave/            ← standalone ESP-IDF project for the slave
+│   │   ├── artifacts/            ← hello.bin / bye.bin built from demoslave
+│   │   ├── build_slave_bins.py   ← builds greeting variants
+│   │   ├── slave_main.c          ← full CANopen slave template with CRC reporting
+│   │   ├── fw_update_server.[ch] ← ESP-IDF OTA handler with running CRC getter
+│   │   └── fw_slave_update.[ch]  ← platform-neutral state machine
+│   └── partitions/               ← CSV partition tables for master/slave
 └── README.md (this file)
 ```
 
@@ -27,11 +37,17 @@ Each ESP-IDF project also has its own README under `demo/demoslave` and `demo/de
 
 1. **Generate slave firmware variants**
    ```pwsh
+   # From the library folder (preferred)
+   cd librarywithfunctions/slave
+   python build_slave_bins.py
+   # Produces: artifacts/hello.bin ("Hello from slave") and artifacts/bye.bin ("Bye from slave")
+
+   # Or from the demo folder
    cd demo
-   python build_slave_bins.py --greeting hello:"Hello from slave" --greeting bye:"Firmware update ready"
+   python build_slave_bins.py --greeting hello:"Hello from slave" --greeting bye:"Bye from slave"
    ```
    - Creates deterministic build folders (`demoslave/build-hello`, `build-bye`, …).
-   - Copies the finished binaries into `demo/artifacts/hello.bin` and `demo/artifacts/bye.bin`.
+   - Copies the finished binaries into `artifacts/hello.bin` and `artifacts/bye.bin`.
 
 2. **Flash the baseline image to the slave**
    ```pwsh
@@ -80,9 +96,12 @@ Key ESP-IDF features in use:
 
 ## Reusing the components
 
-- **Slave reference (`main_firmware_update.c`)** – drop this file into any CANopenNode project to get the same metadata state machine and CRC validation. Replace the ESP-specific storage hooks with your platform’s flash drivers.
+- **Library folder (`librarywithfunctions/`)** – a self-contained snapshot of the core OTA helpers without the rest of the demo scaffolding. See its own `README.md` for integration details.
+- **Slave template (`librarywithfunctions/slave/slave_main.c`)** – full ESP-IDF CANopen slave main with firmware update server integration and running CRC reporting. Use this as a starting point for new slave firmware.
+- **Slave reference (`main_firmware_update.c`)** – drop this file into any CANopenNode project to get the same metadata state machine and CRC validation. Replace the ESP-specific storage hooks with your platform's flash drivers.
 - **Master reference (`master_firmware_uploader.c`)** – compile it on a desktop to test new binaries without hardware. The ESP-IDF master app embeds the same logic but replaces the transport stubs with real `CO_SDOclient` calls.
-- **Build helper (`build_slave_bins.py`)** – reproducibly generates multiple slave binaries by greeting name, target, optimization level, etc. Use it to keep artifacts in `demo/artifacts/` up to date for regression tests.
+- **Build helper (`build_slave_bins.py`)** – reproducibly generates multiple slave binaries by greeting name, target, optimization level, etc. Use it to keep artifacts up to date for regression tests.
+- **Running CRC API (`fw_server_get_running_crc()`)** – allows the slave to expose its running firmware CRC via CANopen object 0x1F5B, enabling the master to skip OTA if firmware already matches.
 
 ## Troubleshooting cheatsheet
 

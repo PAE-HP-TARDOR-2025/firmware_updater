@@ -82,7 +82,8 @@ static void greeting_task(void *arg) {
     (void)arg;
     (void)greeting_storage;
     while (true) {
-        printf("[SLAVE] %s\n", SLAVE_GREETING);
+        uint16_t crc = fw_server_get_running_crc();
+        printf("[SLAVE] %s (running CRC: 0x%04X)\n", SLAVE_GREETING, (unsigned)crc);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }

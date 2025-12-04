@@ -67,6 +67,8 @@ typedef struct {
     OD_extension_t ctrlExt;
     OD_extension_t dataExt;
     OD_extension_t statusExt;
+    OD_extension_t runningCrcExt;
+    uint16_t runningFirmwareCrc;
 } fw_server_state_t;
 
 static fw_server_state_t s_server = {0};
@@ -115,6 +117,58 @@ static uint16_t fw_crc16_step(uint16_t seed, uint8_t data) {
         }
     }
     return seed;
+}
+
+static uint16_t fw_compute_running_firmware_crc(void) {
+    const esp_partition_t *running = esp_ota_get_running_partition();
+    if (running == NULL) {
+        ESP_LOGE(TAG, "Cannot determine running partition");
+        return 0U;
+    }
+    esp_app_desc_t appDesc;
+    if (esp_ota_get_partition_description(running, &appDesc) != ESP_OK) {
+        ESP_LOGE(TAG, "Cannot read app description");
+        return 0U;
+    }
+    /* Read the entire app image and compute CRC */
+    uint16_t crc = 0xFFFFU;
+    size_t imageSize = running->size;
+    /* Limit to actual image size from app header if available */
+    const size_t chunkSize = 1024;
+    uint8_t *buf = malloc(chunkSize);
+    if (buf == NULL) {
+        ESP_LOGE(TAG, "Cannot allocate buffer for CRC computation");
+        return 0U;
+    }
+    size_t offset = 0;
+    while (offset < imageSize) {
+        size_t toRead = (imageSize - offset) < chunkSize ? (imageSize - offset) : chunkSize;
+        if (esp_partition_read(running, offset, buf, toRead) != ESP_OK) {
+            break;
+        }
+        /* Stop at first 0xFF run (end of actual image data) */
+        bool endFound = false;
+        for (size_t i = 0; i < toRead; i++) {
+            if (buf[i] == 0xFFU) {
+                /* Check if rest is 0xFF (erased flash) */
+                bool allFF = true;
+                for (size_t j = i; j < toRead && allFF; j++) {
+                    if (buf[j] != 0xFFU) allFF = false;
+                }
+                if (allFF) {
+                    toRead = i;
+                    endFound = true;
+                    break;
+                }
+            }
+            crc = fw_crc16_step(crc, buf[i]);
+        }
+        if (endFound) break;
+        offset += toRead;
+    }
+    free(buf);
+    ESP_LOGI(TAG, "Running firmware CRC: 0x%04X (partition %s)", crc, running->label);
+    return crc;
 }
 
 static bool fw_store_metadata(fw_update_context_t *ctx, const fw_metadata_record_t *meta) {
@@ -389,6 +443,9 @@ bool fw_server_init(CO_t *co) {
     s_server.co = co;
     fw_reset_context(&s_server.ctx);
 
+    /* Compute running firmware CRC once at init */
+    s_server.runningFirmwareCrc = fw_compute_running_firmware_crc();
+
     s_server.metaExt.object = &s_server;
     s_server.metaExt.read = OD_readOriginal;
     s_server.metaExt.write = fw_write_metadata;
@@ -417,6 +474,20 @@ bool fw_server_init(CO_t *co) {
         return false;
     }
 
+    /* Register running firmware CRC object 0x1F5B if defined in OD */
+#ifdef OD_ENTRY_H1F5B_runningFirmwareCrc
+    s_server.runningCrcExt.object = &s_server;
+    s_server.runningCrcExt.read = OD_readOriginal;
+    s_server.runningCrcExt.write = NULL; /* read-only */
+    if (OD_extension_init(OD_ENTRY_H1F5B_runningFirmwareCrc, &s_server.runningCrcExt) != ODR_OK) {
+        ESP_LOGW(TAG, "Could not register 0x1F5B extension");
+    }
+#endif
+
     ESP_LOGI(TAG, "Firmware download objects registered");
     return true;
+}
+
+uint16_t fw_server_get_running_crc(void) {
+    return s_server.runningFirmwareCrc;
 }
