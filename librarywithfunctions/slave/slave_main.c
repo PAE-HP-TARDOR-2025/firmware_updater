@@ -112,7 +112,8 @@ static void greeting_task(void *arg) {
     (void)greeting_storage; /* keep marker string in binary */
     while (true) {
         uint16_t crc = fw_server_get_running_crc();
-        printf("[SLAVE] %s (running CRC: 0x%04X)\n", SLAVE_GREETING, (unsigned)crc);
+        uint16_t ver = fw_server_get_running_version();
+        printf("[SLAVE] %s (CRC: 0x%04X, ver: %u)\n", SLAVE_GREETING, (unsigned)crc, (unsigned)ver);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }

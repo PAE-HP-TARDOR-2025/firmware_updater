@@ -68,21 +68,23 @@ fw_master_crc16(const uint8_t* data, size_t len) {
     return crc;
 }
 
-bool
+__attribute__((weak)) bool
 fw_master_send_metadata(const fw_upload_plan_t* plan, const fw_payload_t* payload, uint16_t crc) {
     FW_MASTER_LOG("Sending metadata to slave node %u\n", plan->targetNodeId);
     FW_MASTER_LOG(" - image bytes : %zu\n", payload->size);
     FW_MASTER_LOG(" - crc         : 0x%04X\n", crc);
     FW_MASTER_LOG(" - image type  : %u\n", plan->type);
     FW_MASTER_LOG(" - bank        : %u\n", plan->targetBank);
+    FW_MASTER_LOG(" - version     : %u\n", plan->firmwareVersion);
 
-    /* Replace this stub with real CO_SDOclientDownload* calls to index 0x1F57. */
+    /* Replace this stub with real CO_SDOclientDownload* calls to index 0x1F57.
+     * Metadata format: [size(4) | crc(2) | type(1) | bank(1) | version(2)] = 10 bytes */
     bool linkOk = true;
     RETURN_IF_FALSE(linkOk, "Metadata write failed (stub)");
     return true;
 }
 
-bool
+__attribute__((weak)) bool
 fw_master_send_start_command(const fw_upload_plan_t* plan) {
     FW_MASTER_LOG("Issuing start command through object 0x1F51\n");
     /* Replace with real SDO write of the start token. */
@@ -91,7 +93,7 @@ fw_master_send_start_command(const fw_upload_plan_t* plan) {
     return true;
 }
 
-bool
+__attribute__((weak)) bool
 fw_master_send_chunk(const fw_upload_plan_t* plan, const uint8_t* chunk, size_t len, size_t offset) {
     (void)plan;
     FW_MASTER_LOG("Sending chunk offset %zu size %zu\n", offset, len);
@@ -101,7 +103,7 @@ fw_master_send_chunk(const fw_upload_plan_t* plan, const uint8_t* chunk, size_t 
     return true;
 }
 
-bool
+__attribute__((weak)) bool
 fw_master_send_finalize_request(const fw_upload_plan_t* plan, uint16_t crc) {
     (void)plan;
     FW_MASTER_LOG("Sending finalize request with crc 0x%04X\n", crc);
@@ -144,7 +146,7 @@ fw_master_run_upload_session(const fw_upload_plan_t* plan) {
     return ok;
 }
 
-bool
+__attribute__((weak)) bool
 fw_master_query_slave_crc(const fw_upload_plan_t* plan, uint16_t* slaveCrc) {
     FW_MASTER_LOG("Querying running firmware CRC from slave node %u (0x1F5B:01)\n", plan->targetNodeId);
     /* TODO: Replace this stub with a real SDO upload from index 0x1F5B subindex 1.
@@ -152,6 +154,17 @@ fw_master_query_slave_crc(const fw_upload_plan_t* plan, uint16_t* slaveCrc) {
      * On failure (e.g., object does not exist or timeout), return false.
      */
     (void)slaveCrc;
+    return false; /* stub always fails so upload proceeds */
+}
+
+__attribute__((weak)) bool
+fw_master_query_slave_version(const fw_upload_plan_t* plan, uint16_t* slaveVersion) {
+    FW_MASTER_LOG("Querying running firmware version from slave node %u (0x1F5C:01)\n", plan->targetNodeId);
+    /* TODO: Replace this stub with a real SDO upload from index 0x1F5C subindex 1.
+     * On success, parse the 2-byte response into *slaveVersion and return true.
+     * On failure (e.g., object does not exist or timeout), return false.
+     */
+    (void)slaveVersion;
     return false; /* stub always fails so upload proceeds */
 }
 
@@ -168,16 +181,35 @@ fw_master_run_upload_if_needed(const fw_upload_plan_t* plan) {
         FW_MASTER_LOG("Local firmware CRC: 0x%04X\n", localCrc);
     }
 
+    uint16_t localVersion = plan->firmwareVersion;
+    FW_MASTER_LOG("Local firmware version: %u\n", localVersion);
+
+    /* Query slave CRC and version - upload only if BOTH match */
     uint16_t slaveCrc = 0U;
-    if (fw_master_query_slave_crc(plan, &slaveCrc)) {
-        if (slaveCrc == localCrc) {
-            FW_MASTER_LOG("Slave already running firmware with CRC 0x%04X; skipping upload.\n", slaveCrc);
+    uint16_t slaveVersion = 0U;
+    bool crcQueried = fw_master_query_slave_crc(plan, &slaveCrc);
+    bool verQueried = fw_master_query_slave_version(plan, &slaveVersion);
+
+    if (crcQueried && verQueried) {
+        FW_MASTER_LOG("Slave running: CRC=0x%04X, version=%u\n", slaveCrc, slaveVersion);
+        if (slaveCrc == localCrc && slaveVersion == localVersion) {
+            FW_MASTER_LOG("Slave firmware matches (CRC=0x%04X, ver=%u); skipping upload.\n", slaveCrc, slaveVersion);
             free(payload.buffer);
             return true;
         }
-        FW_MASTER_LOG("Slave CRC 0x%04X differs from local 0x%04X; proceeding with upload.\n", slaveCrc, localCrc);
+        if (slaveCrc == localCrc) {
+            FW_MASTER_LOG("CRC matches but version differs (%u vs %u); uploading.\n", slaveVersion, localVersion);
+        } else if (slaveVersion == localVersion) {
+            FW_MASTER_LOG("Version matches but CRC differs (0x%04X vs 0x%04X); uploading.\n", slaveCrc, localCrc);
+        } else {
+            FW_MASTER_LOG("Both CRC and version differ; uploading.\n");
+        }
+    } else if (crcQueried) {
+        FW_MASTER_LOG("Slave CRC=0x%04X (version query failed); proceeding with upload.\n", slaveCrc);
+    } else if (verQueried) {
+        FW_MASTER_LOG("Slave version=%u (CRC query failed); proceeding with upload.\n", slaveVersion);
     } else {
-        FW_MASTER_LOG("Could not query slave CRC; proceeding with upload.\n");
+        FW_MASTER_LOG("Could not query slave CRC or version; proceeding with upload.\n");
     }
 
     bool ok = fw_master_send_metadata(plan, &payload, localCrc) && fw_master_send_start_command(plan) &&

@@ -8,6 +8,8 @@
 #include "esp_partition.h"
 #include "esp_system.h"
 #include <esp_timer.h>
+#include "nvs_flash.h"
+#include "nvs.h"
 #include "sdkconfig.h"
 
 #include "OD.h"
@@ -26,6 +28,15 @@ static const char *TAG = "fw_server";
 static esp_timer_handle_t s_rebootTimer;
 static bool s_rebootScheduled;
 
+/* NVS storage for firmware CRC and version - stores after successful OTA */
+#define FW_NVS_NAMESPACE "fw_update"
+#define FW_NVS_KEY_CRC   "fw_crc"
+#define FW_NVS_KEY_VER   "fw_ver"
+
+/* Forward declaration for NVS CRC retrieval */
+static bool fw_load_crc_from_nvs(uint16_t *crc);
+static bool fw_load_version_from_nvs(uint16_t *version);
+
 typedef enum {
     FW_STAGE_IDLE = 0,
     FW_STAGE_METADATA_READY,
@@ -36,11 +47,12 @@ typedef enum {
 } fw_stage_t;
 
 typedef struct {
-    uint32_t imageBytes;
-    uint16_t crc;
-    uint8_t imageType;
-    uint8_t bank;
-} fw_metadata_record_t;
+    uint32_t imageBytes;  /* Total firmware size in bytes */
+    uint16_t crc;         /* CRC-16 CCITT of the firmware image */
+    uint8_t imageType;    /* Image type identifier */
+    uint8_t bank;         /* Target bank/slot */
+    uint16_t version;     /* Firmware version - for version check */
+} fw_metadata_record_t;  /* Total: 10 bytes */
 
 typedef struct {
     fw_stage_t stage;
@@ -48,6 +60,7 @@ typedef struct {
     uint32_t receivedBytes;
     uint32_t currentChunkBase;
     uint16_t expectedCrc;
+    uint16_t expectedVersion;
     uint16_t runningCrc;
     uint8_t currentBank;
     uint8_t imageType;
@@ -68,7 +81,9 @@ typedef struct {
     OD_extension_t dataExt;
     OD_extension_t statusExt;
     OD_extension_t runningCrcExt;
+    OD_extension_t runningVerExt;
     uint16_t runningFirmwareCrc;
+    uint16_t runningFirmwareVersion;
 } fw_server_state_t;
 
 static fw_server_state_t s_server = {0};
@@ -120,6 +135,14 @@ static uint16_t fw_crc16_step(uint16_t seed, uint8_t data) {
 }
 
 static uint16_t fw_compute_running_firmware_crc(void) {
+    /* First, try to load CRC from NVS - this is reliable after successful OTA */
+    uint16_t nvsCrc;
+    if (fw_load_crc_from_nvs(&nvsCrc)) {
+        ESP_LOGI(TAG, "Running firmware CRC from NVS: 0x%04X", nvsCrc);
+        return nvsCrc;
+    }
+    ESP_LOGW(TAG, "No CRC in NVS, computing from flash (may be inaccurate)");
+    
     const esp_partition_t *running = esp_ota_get_running_partition();
     if (running == NULL) {
         ESP_LOGE(TAG, "Cannot determine running partition");
@@ -187,6 +210,7 @@ static bool fw_store_metadata(fw_update_context_t *ctx, const fw_metadata_record
 
     ctx->expectedSize = meta->imageBytes;
     ctx->expectedCrc = meta->crc;
+    ctx->expectedVersion = meta->version;
     ctx->imageType = meta->imageType;
     ctx->currentBank = meta->bank;
     ctx->receivedBytes = 0U;
@@ -201,8 +225,9 @@ static bool fw_store_metadata(fw_update_context_t *ctx, const fw_metadata_record
     ctx->flashPrepared = false;
     ctx->crcMatched = false;
 
-    ESP_LOGI(TAG, "Metadata accepted: size=%u bytes crc=0x%04X bank=%u type=%u", (unsigned)ctx->expectedSize,
-             ctx->expectedCrc, ctx->currentBank, ctx->imageType);
+    ESP_LOGI(TAG, "Metadata accepted: size=%u bytes crc=0x%04X ver=%u bank=%u type=%u", 
+             (unsigned)ctx->expectedSize, ctx->expectedCrc, ctx->expectedVersion, 
+             ctx->currentBank, ctx->imageType);
     return true;
 }
 
@@ -269,9 +294,78 @@ static bool fw_receive_chunk(fw_update_context_t *ctx, const uint8_t *data, uint
     return true;
 }
 
+/**
+ * Save verified firmware CRC to NVS for reliable retrieval after reboot.
+ * This is more reliable than recomputing from flash since we know the exact size.
+ */
+static void fw_save_crc_to_nvs(uint16_t crc) {
+    nvs_handle_t handle;
+    esp_err_t err = nvs_open(FW_NVS_NAMESPACE, NVS_READWRITE, &handle);
+    if (err != ESP_OK) {
+        ESP_LOGW(TAG, "Cannot open NVS to save CRC: 0x%X", err);
+        return;
+    }
+    err = nvs_set_u16(handle, FW_NVS_KEY_CRC, crc);
+    if (err == ESP_OK) {
+        nvs_commit(handle);
+        ESP_LOGI(TAG, "Saved firmware CRC 0x%04X to NVS", crc);
+    } else {
+        ESP_LOGW(TAG, "Failed to save CRC to NVS: 0x%X", err);
+    }
+    nvs_close(handle);
+}
+
+/**
+ * Load firmware CRC from NVS. Returns true if found, false otherwise.
+ */
+static bool fw_load_crc_from_nvs(uint16_t *crc) {
+    nvs_handle_t handle;
+    esp_err_t err = nvs_open(FW_NVS_NAMESPACE, NVS_READONLY, &handle);
+    if (err != ESP_OK) {
+        return false;
+    }
+    err = nvs_get_u16(handle, FW_NVS_KEY_CRC, crc);
+    nvs_close(handle);
+    return (err == ESP_OK);
+}
+
+/**
+ * Save verified firmware version to NVS.
+ */
+static void fw_save_version_to_nvs(uint16_t version) {
+    nvs_handle_t handle;
+    esp_err_t err = nvs_open(FW_NVS_NAMESPACE, NVS_READWRITE, &handle);
+    if (err != ESP_OK) {
+        ESP_LOGW(TAG, "Cannot open NVS to save version: 0x%X", err);
+        return;
+    }
+    err = nvs_set_u16(handle, FW_NVS_KEY_VER, version);
+    if (err == ESP_OK) {
+        nvs_commit(handle);
+        ESP_LOGI(TAG, "Saved firmware version %u to NVS", version);
+    } else {
+        ESP_LOGW(TAG, "Failed to save version to NVS: 0x%X", err);
+    }
+    nvs_close(handle);
+}
+
+/**
+ * Load firmware version from NVS. Returns true if found, false otherwise.
+ */
+static bool fw_load_version_from_nvs(uint16_t *version) {
+    nvs_handle_t handle;
+    esp_err_t err = nvs_open(FW_NVS_NAMESPACE, NVS_READONLY, &handle);
+    if (err != ESP_OK) {
+        return false;
+    }
+    err = nvs_get_u16(handle, FW_NVS_KEY_VER, version);
+    nvs_close(handle);
+    return (err == ESP_OK);
+}
+
 static bool fw_finalize(fw_update_context_t *ctx, uint16_t crc) {
     if (ctx->stage != FW_STAGE_RECEIVING_BLOCKS) {
-        ESP_LOGE(TAG, "Finalize refused: wrong stage %d", (int)ctx->stage);
+        ESP_LOGE(TAG, "Finalize refused: wrong stage %d", ctx->stage);
         return false;
     }
     if (!ctx->otaOpen || ctx->targetPartition == NULL) {
@@ -304,8 +398,13 @@ static bool fw_finalize(fw_update_context_t *ctx, uint16_t crc) {
 
     ctx->crcMatched = true;
     ctx->stage = FW_STAGE_READY_TO_BOOT;
-    ESP_LOGI(TAG, "Firmware image validated (crc=0x%04X). Next boot will use partition %s", ctx->runningCrc,
-             ctx->targetPartition->label);
+    ESP_LOGI(TAG, "Firmware image validated (crc=0x%04X, ver=%u). Next boot will use partition %s", 
+             ctx->runningCrc, ctx->expectedVersion, ctx->targetPartition->label);
+    
+    /* Save the verified CRC and version to NVS so we can reliably report them after reboot */
+    fw_save_crc_to_nvs(ctx->runningCrc);
+    fw_save_version_to_nvs(ctx->expectedVersion);
+    
     fw_schedule_reboot();
     return true;
 }
@@ -443,8 +542,39 @@ bool fw_server_init(CO_t *co) {
     s_server.co = co;
     fw_reset_context(&s_server.ctx);
 
-    /* Compute running firmware CRC once at init */
-    s_server.runningFirmwareCrc = fw_compute_running_firmware_crc();
+    /* Get running firmware CRC - try NVS first (reliable), then compute from flash (fallback) */
+    uint16_t nvsCrc = 0;
+    if (fw_load_crc_from_nvs(&nvsCrc)) {
+        s_server.runningFirmwareCrc = nvsCrc;
+        ESP_LOGI(TAG, "Running firmware CRC from NVS: 0x%04X", s_server.runningFirmwareCrc);
+    } else {
+        /* No NVS entry - compute from flash (first boot or factory firmware) */
+        s_server.runningFirmwareCrc = fw_compute_running_firmware_crc();
+        ESP_LOGI(TAG, "Running firmware CRC computed: 0x%04X (no NVS entry)", s_server.runningFirmwareCrc);
+    }
+
+    /* Get running firmware version from NVS (or default from Kconfig) */
+    uint16_t nvsVer = 0;
+    if (fw_load_version_from_nvs(&nvsVer)) {
+        s_server.runningFirmwareVersion = nvsVer;
+        ESP_LOGI(TAG, "Running firmware version from NVS: %u", s_server.runningFirmwareVersion);
+    } else {
+#ifdef CONFIG_DEMO_SLAVE_FW_VERSION
+        s_server.runningFirmwareVersion = (uint16_t)(CONFIG_DEMO_SLAVE_FW_VERSION & 0xFFFF);
+        ESP_LOGI(TAG, "Running firmware version from Kconfig: %u", s_server.runningFirmwareVersion);
+#else
+        s_server.runningFirmwareVersion = 0;
+        ESP_LOGI(TAG, "Running firmware version: 0 (no NVS/Kconfig)");
+#endif
+    }
+
+    /* Store in OD so SDO reads return the correct value */
+#ifdef OD_ENTRY_H1F5B_runningFirmwareCrc
+    OD_RAM.x1F5B_runningFirmwareCrc.runningCrc = s_server.runningFirmwareCrc;
+#endif
+#ifdef OD_ENTRY_H1F5C_runningFirmwareVersion
+    OD_RAM.x1F5C_runningFirmwareVersion.runningVersion = s_server.runningFirmwareVersion;
+#endif
 
     s_server.metaExt.object = &s_server;
     s_server.metaExt.read = OD_readOriginal;
@@ -484,10 +614,24 @@ bool fw_server_init(CO_t *co) {
     }
 #endif
 
+    /* Register running firmware version object 0x1F5C if defined in OD */
+#ifdef OD_ENTRY_H1F5C_runningFirmwareVersion
+    s_server.runningVerExt.object = &s_server;
+    s_server.runningVerExt.read = OD_readOriginal;
+    s_server.runningVerExt.write = NULL; /* read-only */
+    if (OD_extension_init(OD_ENTRY_H1F5C_runningFirmwareVersion, &s_server.runningVerExt) != ODR_OK) {
+        ESP_LOGW(TAG, "Could not register 0x1F5C extension");
+    }
+#endif
+
     ESP_LOGI(TAG, "Firmware download objects registered");
     return true;
 }
 
 uint16_t fw_server_get_running_crc(void) {
     return s_server.runningFirmwareCrc;
+}
+
+uint16_t fw_server_get_running_version(void) {
+    return s_server.runningFirmwareVersion;
 }

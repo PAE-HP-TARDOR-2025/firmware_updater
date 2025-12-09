@@ -217,6 +217,14 @@ OD_ATTR_RAM OD_RAM_t OD_RAM = {
     .x1F5A_programStatus = {
         .highestSub_indexSupported = 0x01,
         .payload = {0x00, 0x00}
+    },
+    .x1F5B_runningFirmwareCrc = {
+        .highestSub_indexSupported = 0x01,
+        .runningCrc = 0x0000
+    },
+    .x1F5C_runningFirmwareVersion = {
+        .highestSub_indexSupported = 0x01,
+        .runningVersion = 0x0000
     }
 };
 
@@ -263,6 +271,8 @@ typedef struct {
     OD_obj_record_t o_1F51_programControl[2];
     OD_obj_record_t o_1F57_programIdentification[2];
     OD_obj_record_t o_1F5A_programStatus[2];
+    OD_obj_record_t o_1F5B_runningFirmwareCrc[2];
+    OD_obj_record_t o_1F5C_runningFirmwareVersion[2];
 } ODObjs_t;
 
 static CO_PROGMEM ODObjs_t ODObjs = {
@@ -1179,6 +1189,34 @@ static CO_PROGMEM ODObjs_t ODObjs = {
             .attribute = ODA_SDO_RW | ODA_MB,
             .dataLength = sizeof(OD_RAM.x1F5A_programStatus.payload)
         }
+    },
+    .o_1F5B_runningFirmwareCrc = { //ADDED FOR FIRMWARE CRC CHECK, REMOVE IF NEEDED
+        {
+            .dataOrig = &OD_RAM.x1F5B_runningFirmwareCrc.highestSub_indexSupported,
+            .subIndex = 0,
+            .attribute = ODA_SDO_R,
+            .dataLength = 1
+        },
+        {
+            .dataOrig = &OD_RAM.x1F5B_runningFirmwareCrc.runningCrc,
+            .subIndex = 1,
+            .attribute = ODA_SDO_R | ODA_MB,
+            .dataLength = sizeof(OD_RAM.x1F5B_runningFirmwareCrc.runningCrc)
+        }
+    },
+    .o_1F5C_runningFirmwareVersion = { // FIRMWARE VERSION CHECK
+        {
+            .dataOrig = &OD_RAM.x1F5C_runningFirmwareVersion.highestSub_indexSupported,
+            .subIndex = 0,
+            .attribute = ODA_SDO_R,
+            .dataLength = 1
+        },
+        {
+            .dataOrig = &OD_RAM.x1F5C_runningFirmwareVersion.runningVersion,
+            .subIndex = 1,
+            .attribute = ODA_SDO_R | ODA_MB,
+            .dataLength = sizeof(OD_RAM.x1F5C_runningFirmwareVersion.runningVersion)
+        }
     }
 };
 
@@ -1224,6 +1262,8 @@ static OD_ATTR_OD OD_entry_t ODList[] = {
     {0x1F51, 0x02, ODT_REC, &ODObjs.o_1F51_programControl, NULL},
     {0x1F57, 0x02, ODT_REC, &ODObjs.o_1F57_programIdentification, NULL},
     {0x1F5A, 0x02, ODT_REC, &ODObjs.o_1F5A_programStatus, NULL},
+    {0x1F5B, 0x02, ODT_REC, &ODObjs.o_1F5B_runningFirmwareCrc, NULL},
+    {0x1F5C, 0x02, ODT_REC, &ODObjs.o_1F5C_runningFirmwareVersion, NULL},
     {0x0000, 0x00, 0, NULL, NULL}
 };
 

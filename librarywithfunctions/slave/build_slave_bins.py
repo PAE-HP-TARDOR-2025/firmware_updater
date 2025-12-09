@@ -32,6 +32,26 @@ def parse_greeting(value: str) -> tuple[str, str]:
     return name, text
 
 
+def parse_greeting_with_version(value: str) -> tuple[str, str, int]:
+    """Parse NAME:TEXT or NAME:TEXT:VERSION format."""
+    parts = value.split(":")
+    if len(parts) < 2:
+        raise argparse.ArgumentTypeError("Greeting must be NAME:TEXT or NAME:TEXT:VERSION")
+    name = parts[0].strip()
+    text = parts[1].strip()
+    version = 1
+    if len(parts) >= 3:
+        try:
+            version = int(parts[2].strip())
+        except ValueError:
+            raise argparse.ArgumentTypeError(f"Version must be an integer, got '{parts[2]}'")
+    if not name:
+        raise argparse.ArgumentTypeError("Greeting name cannot be empty")
+    if not text:
+        raise argparse.ArgumentTypeError("Greeting text cannot be empty")
+    return name, text, version
+
+
 def ensure_idf() -> tuple[Path, str]:
     idf_py = shutil.which("idf.py")
     if idf_py is None:
@@ -44,6 +64,7 @@ def ensure_idf() -> tuple[Path, str]:
 def run_build(
     build_name: str,
     greeting: str,
+    version: int,
     target: str,
     output_dir: Path,
     idf_py: Path,
@@ -55,17 +76,34 @@ def run_build(
     env["SLAVE_GREETING_OVERRIDE"] = greeting
     env["IDF_TARGET"] = target
 
-    cmd = [
-        python_cmd,
-        str(idf_py),
-        "-C",
-        str(PROJECT_DIR),
-        "-B",
-        str(build_dir),
-        "build",
-    ]
-    print(f"[BUILD] greeting='{greeting}' -> {build_dir}")
-    subprocess.run(cmd, check=True, env=env)
+    # Create temporary sdkconfig.defaults to set the version
+    sdkconfig_defaults = PROJECT_DIR / "sdkconfig.defaults"
+    original_defaults = None
+    if sdkconfig_defaults.exists():
+        original_defaults = sdkconfig_defaults.read_text()
+    
+    try:
+        # Append version setting to sdkconfig.defaults
+        new_defaults = (original_defaults or "") + f"\nCONFIG_DEMO_SLAVE_FW_VERSION={version}\n"
+        sdkconfig_defaults.write_text(new_defaults)
+        
+        cmd = [
+            python_cmd,
+            str(idf_py),
+            "-C",
+            str(PROJECT_DIR),
+            "-B",
+            str(build_dir),
+            "build",
+        ]
+        print(f"[BUILD] greeting='{greeting}' version={version} -> {build_dir}")
+        subprocess.run(cmd, check=True, env=env)
+    finally:
+        # Restore original sdkconfig.defaults
+        if original_defaults is not None:
+            sdkconfig_defaults.write_text(original_defaults)
+        elif sdkconfig_defaults.exists():
+            sdkconfig_defaults.unlink()
 
     image = locate_project_image(build_dir)
     if image is None:
@@ -145,8 +183,8 @@ def main() -> None:
     parser.add_argument(
         "--greeting",
         action="append",
-        type=parse_greeting,
-        help="Greeting build spec in the form NAME:TEXT (can be repeated)",
+        type=parse_greeting_with_version,
+        help="Greeting build spec in the form NAME:TEXT or NAME:TEXT:VERSION (can be repeated)",
     )
     parser.add_argument(
         "--output-dir",
@@ -158,13 +196,14 @@ def main() -> None:
     args = parser.parse_args()
     idf_py, python_cmd = ensure_idf()
 
-    greetings = args.greeting if args.greeting else list(DEFAULT_GREETING_PAIRS)
+    # Default greetings with version 1
+    greetings = args.greeting if args.greeting else [("hello", "Hello from slave", 1), ("bye", "Bye from slave", 1)]
     if not greetings:
         sys.exit("No greetings provided")
 
     results = []
-    for name, text in greetings:
-        dest = run_build(name, text, args.idf_target, args.output_dir, idf_py, python_cmd)
+    for name, text, version in greetings:
+        dest = run_build(name, text, version, args.idf_target, args.output_dir, idf_py, python_cmd)
         results.append(dest)
 
     print("[BUILD] Completed:")

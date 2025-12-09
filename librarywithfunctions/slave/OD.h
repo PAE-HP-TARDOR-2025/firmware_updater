@@ -252,12 +252,20 @@ typedef struct {
     } x1F51_programControl;
     struct {
         uint8_t highestSub_indexSupported;
-        uint8_t payload[8];
+        uint8_t payload[10];  /* Extended to include version (2 more bytes) */
     } x1F57_programIdentification;
     struct {
         uint8_t highestSub_indexSupported;
         uint8_t payload[2];
     } x1F5A_programStatus;
+    struct { //LAST CHANGE FOR THE CRC, REMOVE IF IT DOESNT WORK
+        uint8_t highestSub_indexSupported;
+        uint16_t runningCrc;
+    } x1F5B_runningFirmwareCrc;
+    struct { // Firmware version for version check
+        uint8_t highestSub_indexSupported;
+        uint16_t runningVersion;
+    } x1F5C_runningFirmwareVersion;
 } OD_RAM_t;
 
 #ifndef OD_ATTR_PERSIST_COMM
@@ -316,6 +324,8 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H1F51 &OD->list[34]
 #define OD_ENTRY_H1F57 &OD->list[35]
 #define OD_ENTRY_H1F5A &OD->list[36]
+#define OD_ENTRY_H1F5B &OD->list[37]
+#define OD_ENTRY_H1F5C &OD->list[38]
 
 
 /*******************************************************************************
@@ -358,6 +368,8 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H1F51_programControl &OD->list[34]
 #define OD_ENTRY_H1F57_programIdentification &OD->list[35]
 #define OD_ENTRY_H1F5A_programStatus &OD->list[36]
+#define OD_ENTRY_H1F5B_runningFirmwareCrc &OD->list[37]
+#define OD_ENTRY_H1F5C_runningFirmwareVersion &OD->list[38]
 
 
 /*******************************************************************************

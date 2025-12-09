@@ -14,6 +14,15 @@ menu "Demo Slave Configuration"
         help
             CAN bus bitrate in kbps.
 
+    config DEMO_SLAVE_FW_VERSION
+        int "Firmware version number"
+        default 1
+        range 1 65535
+        help
+            Firmware version number (1-65535). Increment this when releasing
+            new firmware to ensure updates are applied even if CRC happens
+            to match. The version is stored in NVS after successful OTA.
+
     config DEMO_SLAVE_MAX_CHUNK_BYTES
         int "Max OTA chunk size"
         default 256

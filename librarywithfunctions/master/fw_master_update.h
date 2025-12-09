@@ -24,6 +24,7 @@ typedef struct {
     uint8_t targetNodeId;
     uint32_t maxChunkBytes;
     uint16_t expectedCrc;
+    uint16_t firmwareVersion;  /* Firmware version to send and check */
 } fw_upload_plan_t;
 
 /* Payload buffer returned by the file loader. */
@@ -49,7 +50,14 @@ bool fw_master_run_upload_session(const fw_upload_plan_t* plan);
 bool fw_master_query_slave_crc(const fw_upload_plan_t* plan, uint16_t* slaveCrc);
 
 /**
- * Smart wrapper: queries slave CRC first; skips upload if it already matches.
+ * Query the slave's running firmware version via SDO upload from 0x1F5C:01.
+ * Returns the version in *slaveVersion, or false if the query failed.
+ * Implement the actual SDO upload in place of the stub.
+ */
+bool fw_master_query_slave_version(const fw_upload_plan_t* plan, uint16_t* slaveVersion);
+
+/**
+ * Smart wrapper: queries slave CRC and version first; skips upload if both match.
  * Returns true if firmware is up-to-date or upload succeeded.
  */
 bool fw_master_run_upload_if_needed(const fw_upload_plan_t* plan);
