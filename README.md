@@ -55,12 +55,24 @@ These critical details were discovered during development and **must** be follow
 firmware_updater/
 ├── main_firmware_update.c           ← generic CANopen slave reference implementation
 ├── master_firmware_uploader.c       ← desktop/host master reference
+├── library/                         ← ⭐ REUSABLE LIBRARY (start here for new projects)
+│   ├── README.md                    ← Complete usage guide with example main.c files
+│   ├── master/                      ← Master firmware uploader library
+│   │   ├── OD.c, OD.h               ← CANopen Object Dictionary (SDO client)
+│   │   ├── fw_master_update.c       ← Upload logic with CRC/version check
+│   │   └── fw_master_update.h       ← API: fw_master_run_upload_if_needed()
+│   └── slave/                       ← Slave OTA receiver library
+│       ├── OD.c, OD.h               ← CANopen Object Dictionary (0x1F5x objects)
+│       ├── fw_update_server.c       ← OTA handler with NVS CRC/version storage
+│       ├── fw_update_server.h       ← API: fw_server_init(), fw_server_get_running_crc()
+│       ├── Kconfig.projbuild        ← ESP-IDF menuconfig options
+│       └── build_slave_bins.py      ← Build utility for firmware variants
 ├── demo/
 │   ├── build_slave_bins.py       ← helper that builds multiple slave greetings
 │   ├── artifacts/                ← `.bin` output staged for uploads
 │   ├── demoslave/                ← ESP-IDF slave project (OTA, auto reboot)
 │   └── demomaster/               ← ESP-IDF master project (SPIFFS + CANopen SDO)
-├── librarywithfunctions/
+├── librarywithfunctions/            ← Full working demos with all dependencies
 │   ├── master/                   ← ESP32 master implementation (CANopenNode + TWAI)
 │   │   └── demomaster/           ← ESP-IDF project with SPIFFS storage
 │   ├── slave/                    ← ESP32 slave implementation (OTA + CANopen)
@@ -79,6 +91,22 @@ firmware_updater/
 │   └── partitions/               ← CSV partition tables for master/slave
 └── README.md (this file)
 ```
+
+## Getting Started
+
+### Option 1: Use the Library (Recommended for New Projects)
+
+The `library/` folder contains clean, reusable code that you can copy into any ESP-IDF project:
+
+1. Copy `library/master/` or `library/slave/` files to your project's `main/` folder
+2. Follow the examples in `library/README.md`
+3. Implement the weak SDO functions for master (or use the slave as-is)
+
+See [`library/README.md`](library/README.md) for complete example `main.c` files and setup instructions.
+
+### Option 2: Run the Full Demos
+
+The `librarywithfunctions/` folder contains complete working projects you can flash directly.
 
 Each project has its own detailed README:
 - `librarywithfunctions/master/demomaster/README.md` – ESP32 master documentation
