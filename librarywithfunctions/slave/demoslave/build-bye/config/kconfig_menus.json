@@ -4037,7 +4037,7 @@
             {
                 "children": [],
                 "depends_on": null,
-                "help": "CAN bus bitrate in kbps.",
+                "help": "CAN bus bitrate in kbps. Use 1000 (1Mbps) for fastest transfers.\nMust match the master's bitrate.",
                 "id": "DEMO_SLAVE_CAN_BITRATE_KBPS",
                 "name": "DEMO_SLAVE_CAN_BITRATE_KBPS",
                 "range": [
@@ -4050,12 +4050,25 @@
             {
                 "children": [],
                 "depends_on": null,
-                "help": "Maximum bytes per firmware data chunk.",
+                "help": "Firmware version number (1-65535). Increment this when releasing\nnew firmware to ensure updates are applied even if CRC happens\nto match. The version is stored in NVS after successful OTA.",
+                "id": "DEMO_SLAVE_FW_VERSION",
+                "name": "DEMO_SLAVE_FW_VERSION",
+                "range": [
+                    1,
+                    65535
+                ],
+                "title": "Firmware version number",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "Maximum bytes per firmware data chunk. Larger values result in\nfaster transfers. Common values: 256, 512, 1024, 2048.",
                 "id": "DEMO_SLAVE_MAX_CHUNK_BYTES",
                 "name": "DEMO_SLAVE_MAX_CHUNK_BYTES",
                 "range": [
                     64,
-                    1024
+                    2048
                 ],
                 "title": "Max OTA chunk size",
                 "type": "int"

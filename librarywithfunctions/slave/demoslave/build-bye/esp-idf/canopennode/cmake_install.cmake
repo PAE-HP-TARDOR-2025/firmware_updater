@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/guill/OneDrive/Documents/firmware_updater/demo/demoslave/canopennode
+# Install script for directory: C:/Users/guill/OneDrive/Documents/firmware_updater/canopennode
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
