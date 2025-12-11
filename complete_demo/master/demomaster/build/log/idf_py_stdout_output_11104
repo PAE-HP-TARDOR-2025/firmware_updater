@@ -28,7 +28,7 @@ Loading defaults file C:/Users/guill/OneDrive/Documents/firmware_updater/complet
 -- Found Python3: C:/Espressif/python_env/idf5.0_py3.10_env/Scripts/python.exe (found version "3.10.7") found components: Interpreter 
 -- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
 -- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
--- App "master_uploader" version: 23002aa-dirty
+-- App "master_uploader" version: 21df809-dirty
 -- Adding linker script C:/Users/guill/OneDrive/Documents/firmware_updater/complete_demo/master/demomaster/build/esp-idf/esp_system/ld/memory.ld
 -- Adding linker script C:/Espressif/frameworks/esp-idf-v5.0.1/components/esp_system/ld/esp32/sections.ld.in
 -- Adding linker script C:/Espressif/frameworks/esp-idf-v5.0.1/components/esp_rom/esp32/ld/esp32.rom.ld
