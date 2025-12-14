@@ -1,6 +1,0 @@
-CMake Warning at CMakeLists.txt:32 (message):
-  Slave artifact not found at
-  C:/Users/guill/OneDrive/Documents/firmware_updater/librarywithfunctions/master/demomaster/../../slave/artifacts/slave_fw.bin.
-  Using previously staged SPIFFS payload.
-
-
